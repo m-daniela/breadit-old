@@ -21,13 +21,6 @@ const connectToDB = async () => {
 
 // get all the boards from the db
 const getBoards = async () => {
-    const sql = "select board_id from boards;";
-    return connection.query(sql, (err, res) => {
-        if (err) throw(err);
-        console.log(JSON.parse(JSON.stringify(res)))
-        // return JSON.parse(JSON.stringify(res));
-        return res;
-    })
 
 }
 

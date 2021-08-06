@@ -49,15 +49,13 @@ app.get(endpoints.board, (req, res) => {
         }
         else res.json(result);
     });
-    // getPosts(board)
-    //     .then(data => res.json(data))
-    //     .catch((err) => console.log(`GET /${board} DB error` + err));
 });
 
 // get the comments from the given post
+// TODO: return a success message if anything changed
+// For all post requests
 app.get(endpoints.comments, (req, res) => {
     const {board, post} = req.params;
-    // const post = req.params.post;
     console.log(`GET /${board}/${post}`);
     const sql = "select * from comments where post_id = ?";
     connection.query(sql, post, (err, result) => {
@@ -67,9 +65,6 @@ app.get(endpoints.comments, (req, res) => {
         }
         else res.json(result);
     });
-    // getComments(post)
-    //     .then(data => res.json(data))
-    //     .catch((err) => console.log(`GET /${board}/${post} DB error` + err));
 });
 
 // create a new post on the board
@@ -85,9 +80,6 @@ app.post(endpoints.post, (req, res) => {
         }
         else res.json(result);
     });
-    // addPost(board)
-    //     .then(data => res.json(data))
-    //     .catch((err) => console.log(`GET /${board}/post DB error` + err));
 });
 
 // add a comment to the post
@@ -103,9 +95,6 @@ app.post(endpoints.comment, (req, res) => {
         }
         else res.json(result);
     });
-    // addComment(post)
-    //     .then(data => res.json(data))
-    //     .catch((err) => console.log(`GET /comment/${post} DB error` + err));
 });
 
 // add a reply to the comment
@@ -121,18 +110,9 @@ app.post(endpoints.reply, (req, res) => {
         }
         else res.json(result);
     });
-    // addReply(comment)
-    //     .then(data => res.json(data))
-    //     .catch((err) => console.log(`GET /reply/${comment} DB error` + err));
 });
 
 // connect to the database and listen to the requests
 connectToDB()
     .then(() => app.listen(port, () => console.log(`Server started on port ${port}`)))
     .catch((err) => console.log("Error connecting to the database"));
-
-// app.listen(port, () => console.log(`Server started on port ${port}`));
-
-// mongoose.connect(process.env.CONNECT, {useNewUrlParser: true, useUnifiedTopology: true})
-//     .then(() => app.listen(port, () => console.log(`Server started on port ${port}`)))
-//     .catch((err) => console.log("Error connecting to the database"));
