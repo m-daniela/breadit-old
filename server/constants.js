@@ -6,10 +6,9 @@ const endpoints = {
     board: "/:board",
     comments: "/:board/:post",
     post: "/:board/post",
-    comment: "/:board/comment/:post",
-    reply: "/:board/comment/:post/:comment"
+    comment: "/comment/:post",
+    reply: "/reply/:comment"
 };
-
 
 
 module.exports = {

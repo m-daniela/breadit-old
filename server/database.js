@@ -1,40 +1,68 @@
+const mysql = require("mysql");
+
+
+// connect to the database
+const connection = mysql.createConnection({
+    host: process.env.HOST,
+    port: process.env.DB_PORT,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
+});
+
+
+const connectToDB = async () => {
+    connection.connect((err) => {
+        if (err) throw(err);
+        else console.log("DB connection successful");
+    })
+}
 
 
 // get all the boards from the db
-const getBoards = () => {
+const getBoards = async () => {
+    const sql = "select board_id from boards;";
+    return connection.query(sql, (err, res) => {
+        if (err) throw(err);
+        console.log(JSON.parse(JSON.stringify(res)))
+        // return JSON.parse(JSON.stringify(res));
+        return res;
+    })
 
 }
 
 // get all posts from the board
-const getPosts = (board) => {
+const getPosts = async (board) => {
 
 }
 
 // get all the comments from the given post
-const getComments = (board, post) => {
+const getComments = async (post) => {
 
 }
 
 // add a new post on the board
-const addPost = (board) => {
+const addPost = async (board) => {
 
 }
 
 // add a comment to the given post
-const addComment = (board, post) => {
+const addComment = async (post) => {
 
 }
 
 // reply to an existing comment
-const replyToComment = (board, post, comment) => {
+const addReply = async (board, post, comment) => {
 
 }
 
 module.exports = {
+    connection,
+    connectToDB,
     getBoards,
     getPosts, 
     getComments, 
     addPost, 
     addComment, 
-    replyToComment
+    addReply
 }
