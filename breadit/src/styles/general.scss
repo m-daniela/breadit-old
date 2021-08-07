@@ -1,0 +1,26 @@
+
+:root{
+    --bg_primary: #151515FF;
+    --bg_secondary: #1F1F1FFF;
+    --bg_input: #363636FF;
+    --font_color: #DBDBDBFF;
+}
+
+@mixin flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-row{
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin centered-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // align-self: center;
+
+}

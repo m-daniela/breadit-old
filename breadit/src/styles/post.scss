@@ -1,0 +1,64 @@
+
+.post-preview, .post, .add-post, .add-post form{
+    @include flex-column;
+
+}
+
+.post-preview{
+    width: 500px;
+    height: 350px;
+    padding: 0 2.5em;
+    margin: 1.5em 0;
+    border-radius: 3px;
+    text-decoration: none;
+    .preview-description{
+        height: 100%;
+    }
+    .preview-date{
+        padding: .5em 0;
+        align-self: flex-end;
+    }
+}
+
+.post{
+    width: 500px;
+    padding: 0 2.5em;
+    margin: 0;
+    .post-info{
+        h1{
+            margin-bottom: 1px;
+        }
+        .post-description{
+            height: 100%;
+        }
+        .post-date{
+            padding: 1px 0 .7em 0;
+            font-size: .9em;
+
+        }
+    }
+    
+}
+
+.add-post{
+    width: 500px;
+    padding: 2.5em;
+    margin: 1.5em 0;
+    form{
+        margin: 1em 0;
+    }
+    form div{
+        @include flex-row;
+        justify-content: flex-end;
+        
+    }
+    button{
+        margin: 2em 0 0 1.5em;
+        width: fit-content;
+        &[type="submit"]{
+            filter: invert(100%);
+        }
+    }
+
+
+}

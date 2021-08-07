@@ -1,0 +1,64 @@
+
+@import "./general.scss";
+@import "./mainPage.scss";
+@import "./side.scss";
+@import "./post.scss";
+@import "./comments.scss";
+
+
+
+body{
+  background-color: var(--bg_primary);
+  font-size: 16px;
+}
+
+html, body, .App{
+  height: 100%;
+}
+
+body, a, input, button, textarea{
+  color: var(--font_color);
+  border-radius: 3px;
+  // font-size: 16px;
+
+}
+
+input, button, textarea{
+  background-color: var(--bg_input);
+  border: none;
+  padding: 7px 10px;
+}
+
+textarea{
+  height: 10em;
+}
+
+button{
+  width: fit-content;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.main, .post, .side, .post-preview, .add-post {
+  background-color: var(--bg_secondary);
+}
+
+
+.board-wrapper, .post-wrapper{
+  @include flex-row;
+  justify-content: center;
+  position: relative;
+}
+
+
+.boards{
+  @include flex-row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: fit-content;
+  a {
+      flex-basis: 30%;
+      text-align: center;
+  }
+}

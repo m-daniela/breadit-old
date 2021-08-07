@@ -1,0 +1,19 @@
+
+.main-wrapper{
+    @include centered-container;
+    height: 100vh;
+}
+
+.main{
+    @include centered-container;
+    @include flex-column;
+    width: fit-content;
+    padding: 5% 15%;
+    h1{
+        margin: 0 0 .2em 0;
+    }
+    p{
+        margin-bottom: 5em;
+    }
+    
+}

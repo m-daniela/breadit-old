@@ -1,0 +1,32 @@
+
+.side, .side form{
+    @include flex-column;
+}
+
+.side{
+    height: 100vh;
+    width: 15em;
+    padding: 0 2.5em;
+    margin: 0 2em;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    bottom: 0;
+    h2, h1 {
+        padding-top: 1em;
+        margin-bottom: .2em;
+        font-weight: normal;
+    }
+    button{
+        margin: 1em 0;
+    }
+    form {
+        margin-bottom: 1em;
+        label{
+            margin: 1em 0 .5em 0;
+        }
+    }
+    .boards a{
+        text-align: start;
+    }
+}
