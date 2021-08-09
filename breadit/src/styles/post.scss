@@ -24,6 +24,9 @@
     width: 500px;
     padding: 0 2.5em;
     margin: 0;
+    & > button{
+        margin: 2em 0;
+    }
     .post-info{
         h1{
             margin-bottom: 1px;

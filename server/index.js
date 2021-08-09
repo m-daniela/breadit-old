@@ -27,13 +27,17 @@ app.use(bodyParser.json());
 app.get(endpoints.frontpage, (req, res) => {
     console.log("GET /");
 
-    const sql = "select board_id from boards;";
+    const sql = "select * from boards;";
     connection.query(sql, (err, result) => {
         if (err) {
             console.log("GET / DB error", err);
             res.json({error: "Couldn't retrieve boards"})
         }
-        else res.json(result);
+        else {
+            console.log(res.json);
+
+            res.json(result);
+        }
     });
 });
 
@@ -48,6 +52,20 @@ app.get(endpoints.board, (req, res) => {
             res.json({error: `Couldn't retrieve posts from ${board}`})
         }
         else res.json(result);
+    });
+});
+
+// get the data from the given post
+app.get(endpoints.postData, (req, res) => {
+    const post_id = req.params.post;
+    console.log(`GET /${post_id} eee`);
+    const sql = "select * from posts where post_id = ?";
+    connection.query(sql, post_id, (err, result) => {
+        if (err) {
+            console.log(`GET /${post_id} DB error`, err);
+            res.json({error: `Couldn't retrieve posts from ${post_id}`})
+        }
+        else res.json(result[0]);
     });
 });
 

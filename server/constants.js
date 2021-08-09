@@ -6,6 +6,7 @@ const endpoints = {
     board: "/:board",
     comments: "/:board/:post",
     post: "/:board/post",
+    postData: "/post/:post",
     comment: "/comment/:post",
     reply: "/reply/:comment"
 };

@@ -1,19 +1,31 @@
 import React, { useState } from 'react';
+import { addReply } from '../utils/serverCalls';
 
-const Comment = ({children}) => {
+const Comment = ({children, data}) => {
     const [open, setOpen] = useState(false);
+    const {comment_id, contents, date_added, post_id} = data;
 
-    const openTextarea = () => {
+    const [reply, setReply] = useState("");
 
+    const writeReply = (e) => {
+        e.preventDefault();
+        const date_created = new Date();
+        addReply(post_id, reply, date_created, comment_id)
+            .then(res => {
+                console.log(res);
+                setReply("");
+            })
+            .catch(err => console.log(err));
     };
 
     return (
         <div className="comment">
-            <span>#id and time since posting</span>
-            <div>comment</div>
-            {open ?
-                <form>
-                    <textarea></textarea>
+            <span>#{comment_id} {date_added}</span>
+            <div>{contents}</div>
+            {open 
+                ?
+                <form onSubmit={writeReply}>
+                    <textarea onChange={e => setReply(e.target.value)} value={reply} required/>
                     <div>
                         <button onClick={() => setOpen(!open)}>Close</button>
                         <button type="submit">Add comment</button>

@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AddPostContext } from '../context/AddPostProvider';
+import { BoardsContext } from '../context/BoardsProvider';
 import { customBoard } from '../utils/constants';
 import { getBoards } from '../utils/serverCalls';
+import BoardList from './BoardList';
 
 const Side = ({board}) => {
     const {showAddOverlay} = useContext(AddPostContext);
-    const boards = getBoards();
 
     const addPost = () => {
         showAddOverlay();
@@ -28,9 +29,7 @@ const Side = ({board}) => {
                 </label>
                 <input type="text" />
             </form>
-            <div className="boards">
-                {boards.map(elem => <Link key={elem.board} to={customBoard(elem.board)}>{elem.name}</Link>)}
-            </div>
+            <BoardList/>
         </div>
     );
 };

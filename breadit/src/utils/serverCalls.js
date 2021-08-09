@@ -1,37 +1,52 @@
+import axios from "axios";
+import { addCommentUrl, addPostUrl, addReplyUrl, boardUrl, mainUrl, commentsUrl, postUrl } from "./constants";
 
 // get boards
 export const getBoards = () =>{
-    const boards = [
-        {
-            board: "b", 
-            name: "bread",
-            description: "lorem"
-        },
-        {
-            board: "c", 
-            name: "cakes",
-            description: "lorem"
-        },
-        {
-            board: "r", 
-            name: "recipes",
-            description: "lorem"
-        }
-        ,
-        {
-            board: "f", 
-            name: "fr",
-            description: "lorem"
-        },
-        {
-            board: "re", 
-            name: "recipes",
-            description: "lorem"
-        },
-        {
-            board: "rr", 
-            name: "recipes",
-            description: "lorem"
-        }];
-    return boards;
+    return axios.get(mainUrl)
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
+// get post data 
+export const getPost = (post_id) => {
+    return axios.get(postUrl(post_id))
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
+// get posts from the given board
+export const getPosts = (board) => {
+    return axios.get(boardUrl(board))
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
+// get the comments from the post
+export const getComments = (board, post) => {
+    return axios.get(commentsUrl(board, post))
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
+// add a new post
+export const addPost = (board_name, title, date_created, description) => {
+    return axios.post(addPostUrl(board_name), {title, description, date_created, board_name})
+        .then(res => res.data)
+        .catch(err => console.log(err));
+        
+};
+
+// add a new comment to the given post
+export const addComment = (post_id, contents, date_added) => {
+    return axios.post(addCommentUrl(post_id), {post_id, contents, date_added})
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
+// add reply to the given comment
+export const addReply = (post_id, contents, date_added, reply_to) => {
+    return axios.post(addReplyUrl(post_id), {post_id, contents, date_added, reply_to})
+        .then(res => res.data)
+        .catch(err => console.log(err));
 };
