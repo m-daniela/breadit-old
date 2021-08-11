@@ -1,0 +1,78 @@
+import { configureStore, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getPosts } from '../utils/serverCalls';
+
+const initialBoard = "";
+const initialPage = 1;
+const initialPosts = {};
+
+// middleware
+
+// fetch the posts for the selected board
+export const fetchPosts = createAsyncThunk(
+    "posts/fetchPosts", 
+    async (board, thunkAPI) => {
+        
+        const posts = await getPosts(board);
+        console.log(posts);
+        return posts;
+    }
+);
+
+
+
+// change the selected board
+const boardSlice = createSlice({
+    name: "board",
+    initialState: initialBoard,
+    reducers: {
+        selectBoard: (state, action) => action.payload
+    }
+});
+
+// change the current page
+// nextPage: increase by 1
+// previousPage: decrease by 1
+// selectPage: set the page to the selected one
+const pageSlice = createSlice({
+    name: "page",
+    initialState: initialPage,
+    reducers: {
+        nextPage: (state, action) => state + 1,
+        previousPage: (state, action) => state - 1,
+        selectPage: (state, action) => action.payload
+    }
+});
+
+// change the currently fetched posts
+const postsSlice = createSlice({
+    name: "posts",
+    initialState: initialPosts,
+    extraReducers: {
+        [fetchPosts.fulfilled]: (state, action) => action.payload
+        // {
+        //     const normalized = action.payload.reducer((post, elem) => post[elem.post_id] = elem);
+        //     state = normalized;
+        // }
+    }
+});
+
+// export the actions
+
+export const {
+    selectBoard
+} = boardSlice.actions;
+
+export const {
+    nextPage, 
+    previousPage,
+    selectPage
+} = pageSlice.actions;
+
+const reducer = {
+    board: boardSlice.reducer,
+    page: pageSlice.reducer, 
+    posts: postsSlice.reducer
+};
+
+
+export const store = configureStore({ reducer });

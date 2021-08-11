@@ -59,13 +59,15 @@ app.get(endpoints.board, (req, res) => {
 app.get(endpoints.postData, (req, res) => {
     const post_id = req.params.post;
     console.log(`GET /${post_id} eee`);
-    const sql = "select * from posts where post_id = ?";
+    const sql = "select * from posts p, comments c where p.post_id = ? and p.post_id = c.post_id";
     connection.query(sql, post_id, (err, result) => {
         if (err) {
             console.log(`GET /${post_id} DB error`, err);
             res.json({error: `Couldn't retrieve posts from ${post_id}`})
         }
-        else res.json(result[0]);
+        else {
+            res.json(result[0]);
+        }
     });
 });
 
