@@ -4,7 +4,7 @@ import { BoardsContext } from '../context/BoardsProvider';
 import { customBoard } from '../utils/constants';
 
 const BoardList = () => {
-    const boards = useContext(BoardsContext);
+    const {boards} = useContext(BoardsContext);
 
     return (
         <div className="boards">

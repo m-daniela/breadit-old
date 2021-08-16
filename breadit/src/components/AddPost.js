@@ -1,23 +1,34 @@
 import React, { useContext, useState } from 'react';
+import {useSelector, useDispatch} from "react-redux";
+
 import { AddPostContext } from '../context/AddPostProvider';
 import { addPost } from '../utils/serverCalls';
+import { fetchPosts } from '../store/redux';
 
+// Add Post
+// form for creating a new post
+// the user needs to add the title and the body of the post
+// the board on which it should appear is derived from the 
+// currently selected board
 const AddPost = () => {
     const {showAddOverlay} = useContext(AddPostContext);
     const [title, setTitle] = useState("");
     const [contents, setContents] = useState("");
-    const board = "b";
+    const board = useSelector(state => state.board);
+    const dispatch = useDispatch();
 
+    // handle post creation 
     const createPost = (e) => {
         e.preventDefault();
         const date_created = new Date();
+        console.log();
         addPost(board, title, date_created, contents)
             .then(res => {
                 console.log(res);
                 setContents("");
                 setTitle("");
                 closeAdd();
-
+                dispatch(fetchPosts(board));
             })
             .catch(err => console.log(err));
             

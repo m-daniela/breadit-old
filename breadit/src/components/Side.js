@@ -1,17 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AddPostContext } from '../context/AddPostProvider';
 import { BoardsContext } from '../context/BoardsProvider';
-import { customBoard } from '../utils/constants';
+import { boardUrl, customBoard } from '../utils/constants';
 import { getBoards } from '../utils/serverCalls';
 import BoardList from './BoardList';
 
 const Side = ({board}) => {
     const {showAddOverlay} = useContext(AddPostContext);
+    const {getBoardInfo} = useContext(BoardsContext);
+    // const [boardData, setBoardData] = useState({});
+
+    // useEffect(()=>{
+    //     setBoardData(getBoardInfo(boardUrl));
+    // }, []);
 
     const addPost = () => {
         showAddOverlay();
     };
+    
 
     return (
         <div className="side">

@@ -18,8 +18,15 @@ const BoardsProvider = ({children}) => {
            
         };
     }, []);
+
+    const getBoardInfo = (board) => {
+        const data = boards.filter(elem => elem.board_id === board);
+        return data[0];
+    };
+
+    
     return (
-        <BoardsContext.Provider value={boards}>
+        <BoardsContext.Provider value={{boards, getBoardInfo}}>
             {children}
         </BoardsContext.Provider>
     );

@@ -1,9 +1,10 @@
 import { configureStore, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getPosts } from '../utils/serverCalls';
+import { getComments, getPosts } from '../utils/serverCalls';
 
 const initialBoard = "";
 const initialPage = 1;
-const initialPosts = {};
+const initialPosts = [];
+const initialComments = [];
 
 // middleware
 
@@ -11,14 +12,19 @@ const initialPosts = {};
 export const fetchPosts = createAsyncThunk(
     "posts/fetchPosts", 
     async (board, thunkAPI) => {
-        
         const posts = await getPosts(board);
-        console.log(posts);
         return posts;
     }
 );
 
-
+// fetch the comments for a selected post
+export const fetchComments = createAsyncThunk(
+    "posts/fetchPosts", 
+    async ({ board, post }, thunkAPI) => {
+        const posts = await getComments(board, post);
+        return posts;
+    }
+);
 
 // change the selected board
 const boardSlice = createSlice({
@@ -43,21 +49,26 @@ const pageSlice = createSlice({
     }
 });
 
+
 // change the currently fetched posts
 const postsSlice = createSlice({
     name: "posts",
     initialState: initialPosts,
     extraReducers: {
         [fetchPosts.fulfilled]: (state, action) => action.payload
-        // {
-        //     const normalized = action.payload.reducer((post, elem) => post[elem.post_id] = elem);
-        //     state = normalized;
-        // }
+    }
+});
+
+// change the currently fetched comments
+const commentsSlice = createSlice({
+    name: "comments",
+    initialState: initialComments,
+    extraReducers: {
+        [fetchComments.fulfilled]: (state, action) => action.payload
     }
 });
 
 // export the actions
-
 export const {
     selectBoard
 } = boardSlice.actions;
@@ -71,6 +82,7 @@ export const {
 const reducer = {
     board: boardSlice.reducer,
     page: pageSlice.reducer, 
+    comments: commentsSlice.reducer,
     posts: postsSlice.reducer
 };
 

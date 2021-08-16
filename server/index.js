@@ -45,7 +45,7 @@ app.get(endpoints.frontpage, (req, res) => {
 app.get(endpoints.board, (req, res) => {
     const board = req.params.board;
     console.log(`GET /${board}`);
-    const sql = "select * from posts where board_name = ?";
+    const sql = "select * from posts where board_name = ? order by date_created desc";
     connection.query(sql, board, (err, result) => {
         if (err) {
             console.log(`GET /${board} DB error`, err);
@@ -58,8 +58,8 @@ app.get(endpoints.board, (req, res) => {
 // get the data from the given post
 app.get(endpoints.postData, (req, res) => {
     const post_id = req.params.post;
-    console.log(`GET /${post_id} eee`);
-    const sql = "select * from posts p, comments c where p.post_id = ? and p.post_id = c.post_id";
+    console.log(`GET /${post_id}`);
+    const sql = "select * from posts p where p.post_id = ?";
     connection.query(sql, post_id, (err, result) => {
         if (err) {
             console.log(`GET /${post_id} DB error`, err);
@@ -72,18 +72,18 @@ app.get(endpoints.postData, (req, res) => {
 });
 
 // get the comments from the given post
-// TODO: return a success message if anything changed
-// For all post requests
 app.get(endpoints.comments, (req, res) => {
     const {board, post} = req.params;
     console.log(`GET /${board}/${post}`);
-    const sql = "select * from comments where post_id = ?";
+    const sql = "select * from comments where post_id = ? order by date_added desc";
     connection.query(sql, post, (err, result) => {
         if (err) {
             console.log(`GET /${board}/${post} DB error`, err);
             res.json({error: `Couldn't retrieve comments from ${board}, post ${post}`})
         }
-        else res.json(result);
+        else {
+            res.json(result);
+        }
     });
 });
 

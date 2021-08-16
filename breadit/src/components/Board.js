@@ -16,14 +16,12 @@ const Board = () => {
 
     // TODO: obtain the first 10 posts and display them
     // retrieve id, title, description and date_created
-    const [posts, setPosts] = useState([]);
-    const posts1 = useSelector(state => state.posts);
+    
+    const posts = useSelector(state => state.posts);
 
     useEffect(() => {
+
         dispatch(fetchPosts(board));
-        // getPosts(board)
-        //     .then(res => setPosts(res))
-        //     .catch(err => console.log(err));
         
         return () => {
         };
@@ -34,10 +32,10 @@ const Board = () => {
             <div className="board">
                 {addPost 
                     ? 
-                    <AddPost></AddPost>
+                    <AddPost/>
                     :
                     <>
-                        {posts1.map(elem => <PostPreview key={elem.post_id} data={elem} />)}
+                        {posts.map(elem => <PostPreview key={elem.post_id} data={elem} />)}
                     </>
                 }
             </div>
