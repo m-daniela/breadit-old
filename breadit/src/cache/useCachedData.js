@@ -3,7 +3,7 @@ import { getBoards } from "../utils/serverCalls";
 
 export const cache = {boards: []};
 
-
+// custom hook to handle cached data
 export function useCachedData(){
     const [boards, setBoards] = useState([]);
 

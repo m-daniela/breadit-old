@@ -18,7 +18,7 @@ export const port = 5000;
 export const mainUrl = `http://localhost:${port}/`;
 export const boardUrl = board => `${mainUrl}${board}`;
 export const commentsUrl = (board, post) => `${mainUrl}${board}/${post}`;
-export const postUrl = post => `${mainUrl}post/${post}`;
+export const postUrl = (board, post) => `${mainUrl}post/${board}/${post}`;
 export const addPostUrl = board => `${mainUrl}${board}/post`;
 export const addCommentUrl = post => `${mainUrl}comment/${post}`;
 export const addReplyUrl = comment => `${mainUrl}reply/${comment}`;

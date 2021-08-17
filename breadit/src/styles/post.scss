@@ -4,12 +4,16 @@
 
 }
 
-.post-preview{
+.post-preview, .post, .skeleton-error{
+    text-align: justify;
     width: 500px;
-    max-height: 350px;
-    padding: 0 2.5em;
+    padding: 0 2.5em 1em 2.5em;
     margin: 1.5em 0;
-    border-radius: 3px;
+}
+
+.post-preview{
+    max-height: 350px;
+    border-radius: var(--corners);
     text-decoration: none;
     .preview-description{
         height: 100%;
@@ -21,9 +25,6 @@
 }
 
 .post{
-    width: 500px;
-    padding: 0 2.5em;
-    margin: 0;
     & > button{
         margin: 2em 0;
     }
@@ -43,6 +44,55 @@
     
 }
 
+.skeleton {
+    & > *{
+        background-color: var(--bg_input);
+        border-radius: var(--corners);
+        position: relative;
+        background: linear-gradient(        
+            to right,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0.123) 50%,
+            rgba(255, 255, 255, 0) 80%
+        ), var(--bg_input);
+        background-repeat: repeat-y;        
+        background-size: 100px 200px;       
+        background-position: 0 0;
+        animation: load 1s infinite;
+        &:before{
+            content: " ";
+        }
+    }
+    h2, .preview-date{
+        height: 1.5em;
+    }
+    .preview-description{
+        height: 3em;
+    }
+    .preview-date{
+        margin: 0.5em 0;
+        padding: 0 .5em;
+        width: 25%;
+    }
+    
+
+    @keyframes load {
+        to {
+            background-position: 100% 0, 0 0;
+        }
+    }
+}
+
+.skeleton-error{
+    @include centered-container;
+    border-radius: var(--corners);
+    padding: 2.5em;
+}
+
+.post .skeleton-error, .post-preview.skeleton{
+    padding: 2.5em 0;
+}
+
 .add-post{
     width: 500px;
     padding: 2.5em;
@@ -53,7 +103,12 @@
     form div{
         @include flex-row;
         justify-content: flex-end;
-        
+    }
+    label{
+        margin-bottom: .5em;
+    }
+    input{
+        margin-bottom: 1.5em;
     }
     button{
         margin: 2em 0 0 1.5em;

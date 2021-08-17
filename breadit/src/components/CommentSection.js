@@ -11,10 +11,13 @@ const CommentSection = ({currentPost}) => {
     const board = useSelector(state => state.board);
 
     useEffect(() => {
-        dispatch(fetchComments({board, post: currentPost}));
+        if (board !== undefined) {
+            dispatch(fetchComments({board, post: currentPost}));
+        }
         return () => {
         };
-    }, []);
+    }, [board]);
+    
     return (
         <div className="comment-section">
             {comments.map(elem => <Comment key={elem.comment_id} data={elem}/>)}

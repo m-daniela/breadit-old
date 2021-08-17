@@ -9,8 +9,8 @@ export const getBoards = () =>{
 };
 
 // get post data 
-export const getPost = (post_id) => {
-    return axios.get(postUrl(post_id))
+export const getPost = (post_id, board_id) => {
+    return axios.get(postUrl(board_id, post_id))
         .then(res => res.data)
         .catch(err => console.log(err));
 };

@@ -3,11 +3,12 @@ import { useParams } from 'react-router-dom';
 import { AddPostContext } from '../context/AddPostProvider';
 import { fetchPosts, selectBoard } from '../store/redux';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPosts } from '../utils/serverCalls';
 import AddPost from './AddPost';
 import PostPreview from './PostPreview';
 import Side from './Side';
+import PostSkeleton from './PostSkeleton';
 
+// 
 const Board = () => {
     const {addPost} = useContext(AddPostContext);
     const {board} = useParams();
@@ -35,7 +36,11 @@ const Board = () => {
                     <AddPost/>
                     :
                     <>
-                        {posts.map(elem => <PostPreview key={elem.post_id} data={elem} />)}
+                        {posts.length !== 0 ? 
+                            posts.map(elem => <PostPreview key={elem.post_id} data={elem} />)
+                            :
+                            <PostSkeleton />
+                        }
                     </>
                 }
             </div>
