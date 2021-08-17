@@ -1,10 +1,11 @@
 import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
-import { BoardsContext } from '../context/BoardsProvider';
+import { useCachedData } from '../cache/useCachedData';
 import { customBoard } from '../utils/constants';
 
+// Show the list of available boards
 const BoardList = () => {
-    const {boards} = useContext(BoardsContext);
+    const boards = useCachedData();
 
     return (
         <div className="boards">

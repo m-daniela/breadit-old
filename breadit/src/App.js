@@ -11,29 +11,26 @@ import MainPage from "./components/MainPage";
 import Board from "./components/Board";
 import Post from "./components/Post";
 import AddPostProvider from "./context/AddPostProvider";
-import BoardsProvider from "./context/BoardsProvider";
 
 
 function App() {
     return (
         <Router>
-            <BoardsProvider>
-                <AddPostProvider>
-                    <div className="App">
-                        <Switch>
-                            <Route exact path={routes.main}>
-                                <MainPage />
-                            </Route>
-                            <Route exact path={routes.board}>
-                                <Board />
-                            </Route>
-                            <Route exact path={routes.post}>
-                                <Post />
-                            </Route>
-                        </Switch>
-                    </div>
-                </AddPostProvider>
-            </BoardsProvider>
+            <AddPostProvider>
+                <div className="App">
+                    <Switch>
+                        <Route exact path={routes.main}>
+                            <MainPage />
+                        </Route>
+                        <Route exact path={routes.board}>
+                            <Board />
+                        </Route>
+                        <Route exact path={routes.post}>
+                            <Post />
+                        </Route>
+                    </Switch>
+                </div>
+            </AddPostProvider>
         </Router>
         
     );
