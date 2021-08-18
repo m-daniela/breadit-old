@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchComments } from '../store/redux';
+import { getRelativeTime } from '../utils/relativeTime';
 import { addReply } from '../utils/serverCalls';
 
 const Comment = ({children, data}) => {
@@ -25,7 +26,7 @@ const Comment = ({children, data}) => {
 
     return (
         <div className="comment">
-            <span>#{comment_id} {date_added}</span>
+            <span>#{comment_id} - {getRelativeTime(date_added)}</span>
             <div>{contents}</div>
             {open 
                 ?

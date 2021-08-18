@@ -4,7 +4,7 @@
 const endpoints = {
     frontpage: "/",
     board: "/:board",
-    comments: "/:board/:post",
+    comments: "/comments/:board/:post",
     post: "/:board/post",
     postData: "/post/:board/:post",
     comment: "/comment/:post",

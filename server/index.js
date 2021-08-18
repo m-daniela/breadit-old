@@ -75,7 +75,7 @@ app.get(endpoints.postData, (req, res) => {
 // get the comments from the given post
 app.get(endpoints.comments, (req, res) => {
     const {board, post} = req.params;
-    console.log(`GET /${board}/${post}`);
+    console.log(`GET /comments/${board}/${post}`);
     const sql = "select * from comments where post_id = ? order by date_added desc";
     connection.query(sql, post, (err, result) => {
         if (err) {

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { customPost } from '../utils/constants';
 import {useSelector} from "react-redux";
+import { getRelativeTime } from '../utils/relativeTime';
 
 // Post Preview
 // 
@@ -12,7 +13,7 @@ const PostPreview = ({data}) => {
         <Link className="post-preview" to={customPost(board, post_id)}>
             <h2>{title}</h2>
             <div className="preview-description">{description}</div>
-            <div className="preview-date">{date_created}</div>
+            <div className="preview-date">{getRelativeTime(date_created)}</div>
         </Link>
     );
 };

@@ -8,6 +8,7 @@ import AddPost from './AddPost';
 import CommentSection from './CommentSection';
 import PostSkeleton from './PostSkeleton';
 import Side from './Side';
+import { getRelativeTime } from '../utils/relativeTime';
 
 const Post = () => {
     const {addPost} = useContext(AddPostContext);
@@ -63,7 +64,7 @@ const Post = () => {
                             <> 
                                 <div className="post-info">
                                     <h1>{data.title}</h1>
-                                    <div className="post-date">{data.date_created}</div>
+                                    <div className="post-date">{getRelativeTime(data.date_created)}</div>
                                     <div className="post-description">{data.description}</div>
                                 </div>
                                 <form className="add-comment" onSubmit={writeComment}>

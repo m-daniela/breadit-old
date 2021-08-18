@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import { getComments } from '../utils/serverCalls';
 import Comment from './Comment';
 import {useDispatch, useSelector} from "react-redux";
 import { fetchComments } from '../store/redux';
@@ -11,7 +10,7 @@ const CommentSection = ({currentPost}) => {
     const board = useSelector(state => state.board);
 
     useEffect(() => {
-        if (board !== undefined) {
+        if (board) {
             dispatch(fetchComments({board, post: currentPost}));
         }
         return () => {
