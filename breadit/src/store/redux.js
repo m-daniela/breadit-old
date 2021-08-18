@@ -11,8 +11,9 @@ const initialComments = [];
 // fetch the posts for the selected board
 export const fetchPosts = createAsyncThunk(
     "posts/fetchPosts", 
-    async (board, thunkAPI) => {
-        const posts = await getPosts(board);
+    async ({board, page}, thunkAPI) => {
+        console.log(board, page, "====");
+        const posts = await getPosts(board, page);
         return posts;
     }
 );

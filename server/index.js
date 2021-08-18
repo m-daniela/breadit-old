@@ -44,9 +44,13 @@ app.get(endpoints.frontpage, (req, res) => {
 // get posts from the given board
 app.get(endpoints.board, (req, res) => {
     const board = req.params.board;
-    console.log(`GET /${board}`);
-    const sql = "select * from posts where board_name = ? order by date_created desc";
-    connection.query(sql, board, (err, result) => {
+    const page = +req.params.page;
+    const startIndex = (page - 1) * 10;
+    const endIndex = startIndex + 10;
+
+    console.log(`GET /${board}/page/${page}`);
+    const sql = "select * from posts where board_name = ? order by date_created desc limit ?, ?";
+    connection.query(sql, [board, startIndex, endIndex], (err, result) => {
         if (err) {
             console.log(`GET /${board} DB error`, err);
             res.json({error: `Couldn't retrieve posts from ${board}`})

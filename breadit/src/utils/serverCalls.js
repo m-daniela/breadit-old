@@ -16,8 +16,8 @@ export const getPost = (post_id, board_id) => {
 };
 
 // get posts from the given board
-export const getPosts = (board) => {
-    return axios.get(boardUrl(board))
+export const getPosts = (board, page) => {
+    return axios.get(boardUrl(board, page))
         .then(res => res.data)
         .catch(err => console.log(err));
 };

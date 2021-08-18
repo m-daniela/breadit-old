@@ -4,6 +4,7 @@ import {useSelector, useDispatch} from "react-redux";
 import { AddPostContext } from '../../context/AddPostProvider';
 import { addPost } from '../../utils/serverCalls';
 import { fetchPosts } from '../../store/redux';
+import Head from '../common/Head';
 
 // Add Post
 // form for creating a new post
@@ -14,7 +15,8 @@ const AddPost = () => {
     const {showAddOverlay} = useContext(AddPostContext);
     const [title, setTitle] = useState("");
     const [contents, setContents] = useState("");
-    const {board_id} = useSelector(state => state.board);
+    const {board_id, name} = useSelector(state => state.board);
+    const page = useSelector(state => state.page);
     const dispatch = useDispatch();
 
     // handle post creation 
@@ -28,7 +30,7 @@ const AddPost = () => {
                 setContents("");
                 setTitle("");
                 closeAdd();
-                dispatch(fetchPosts(board_id));
+                dispatch(fetchPosts(board_id, page));
             })
             .catch(err => console.log(err));
             
@@ -36,19 +38,22 @@ const AddPost = () => {
 
     const closeAdd = () => showAddOverlay();
     return (
-        <div className="add-post">
-            <span>Add a new post</span>
-            <form onSubmit={createPost}>
-                <label>Title</label>
-                <input type="text" onChange={e => setTitle(e.target.value)} value={title} required/>
-                <label>Your post</label>
-                <textarea onChange={e => setContents(e.target.value)} value={contents} required />
-                <div>
-                    <button onClick={closeAdd}>Go back</button>
-                    <button type="submit">Add new post</button>
-                </div>
-            </form>
-        </div>
+        <>
+            <Head title={`Add new post on ${name}`}/>
+            <div className="add-post">
+                <h2>Add a new post</h2>
+                <form onSubmit={createPost}>
+                    <label>Title</label>
+                    <input type="text" onChange={e => setTitle(e.target.value)} value={title} required/>
+                    <label>Your post</label>
+                    <textarea onChange={e => setContents(e.target.value)} value={contents} required />
+                    <div>
+                        <button onClick={closeAdd}>Go back</button>
+                        <button type="submit">Add new post</button>
+                    </div>
+                </form>
+            </div>
+        </>
     );
 };
 
