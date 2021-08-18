@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 // Post skeleton
 // displayed when the user is waiting for the post/s to load
@@ -6,7 +6,13 @@ import React, { useState } from 'react';
 const PostSkeleton = () => {
     const [showLoader, setShowLoader] = useState(true);
 
-    setTimeout(() => setShowLoader(false), 5000);
+    useEffect(() => {
+        setTimeout(() => setShowLoader(false), 5000);
+
+        return () => {
+            
+        };
+    }, []);
 
     return (
         <>

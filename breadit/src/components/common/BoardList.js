@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
-import { useCachedData } from '../cache/useCachedData';
-import { customBoard } from '../utils/constants';
+import { useCachedData } from '../../cache/useCachedData';
+import { customBoard } from '../../utils/constants';
 
 // Show the list of available boards
 const BoardList = () => {

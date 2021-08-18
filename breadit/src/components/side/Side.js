@@ -1,14 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useCachedData } from '../cache/useCachedData';
-import { AddPostContext } from '../context/AddPostProvider';
-import { customBoard } from '../utils/constants';
-import BoardList from './BoardList';
+import { useCachedData } from '../../cache/useCachedData';
+import { AddPostContext } from '../../context/AddPostProvider';
+import { selectBoard } from '../../store/redux';
+import { customBoard } from '../../utils/constants';
+import BoardList from '../common/BoardList';
 
 const Side = ({board}) => {
     const {showAddOverlay} = useContext(AddPostContext);
     const boards = useCachedData();
     const [boardData, setBoardData] = useState({});
+    const dispatch = useDispatch();
 
     useEffect(()=>{
         // get the information about the currently selected board
@@ -18,7 +21,9 @@ const Side = ({board}) => {
         };
 
         if (boards.length !== 0) { 
-            setBoardData(getBoardInfo(board, boards));
+            const boardInfo = getBoardInfo(board, boards);
+            setBoardData(boardInfo);
+            dispatch(selectBoard(boardInfo));
         }
     }, [board, boards]);
 

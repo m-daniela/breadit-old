@@ -1,21 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import Comment from './Comment';
 import {useDispatch, useSelector} from "react-redux";
-import { fetchComments } from '../store/redux';
+import { fetchComments } from '../../store/redux';
 
 
 const CommentSection = ({currentPost}) => {
     const comments = useSelector(state => state.comments);
     const dispatch = useDispatch();
-    const board = useSelector(state => state.board);
+    const {board_id} = useSelector(state => state.board);
 
     useEffect(() => {
-        if (board) {
-            dispatch(fetchComments({board, post: currentPost}));
+        if (board_id) {
+            dispatch(fetchComments({board: board_id, post: currentPost}));
         }
         return () => {
         };
-    }, [board]);
+    }, [board_id]);
     
     return (
         <div className="comment-section">

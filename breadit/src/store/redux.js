@@ -1,7 +1,7 @@
 import { configureStore, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getComments, getPosts } from '../utils/serverCalls';
 
-const initialBoard = "";
+const initialBoard = {};
 const initialPage = 1;
 const initialPosts = [];
 const initialComments = [];

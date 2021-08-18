@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import {useSelector, useDispatch} from "react-redux";
 
-import { AddPostContext } from '../context/AddPostProvider';
-import { addPost } from '../utils/serverCalls';
-import { fetchPosts } from '../store/redux';
+import { AddPostContext } from '../../context/AddPostProvider';
+import { addPost } from '../../utils/serverCalls';
+import { fetchPosts } from '../../store/redux';
 
 // Add Post
 // form for creating a new post
@@ -14,7 +14,7 @@ const AddPost = () => {
     const {showAddOverlay} = useContext(AddPostContext);
     const [title, setTitle] = useState("");
     const [contents, setContents] = useState("");
-    const board = useSelector(state => state.board);
+    const {board_id} = useSelector(state => state.board);
     const dispatch = useDispatch();
 
     // handle post creation 
@@ -22,13 +22,13 @@ const AddPost = () => {
         e.preventDefault();
         const date_created = new Date();
         console.log();
-        addPost(board, title, date_created, contents)
+        addPost(board_id, title, date_created, contents)
             .then(res => {
                 console.log(res);
                 setContents("");
                 setTitle("");
                 closeAdd();
-                dispatch(fetchPosts(board));
+                dispatch(fetchPosts(board_id));
             })
             .catch(err => console.log(err));
             
