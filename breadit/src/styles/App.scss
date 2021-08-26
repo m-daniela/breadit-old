@@ -57,9 +57,9 @@ button{
   @include flex-row;
   flex-wrap: wrap;
   justify-content: space-between;
-  width: fit-content;
+  width: 100%;
   a {
-    flex-basis: 30%;
+    flex-basis: 20%;
     text-align: center;
     padding-right: 0.6em;
   }

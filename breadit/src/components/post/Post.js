@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { AddPostContext } from '../../context/AddPostProvider';
 import { addComment, getPost } from '../../utils/serverCalls';
 import {useDispatch} from "react-redux";
-import {selectBoard} from '../../store/redux';
+import {fetchComments, selectBoard} from '../../store/redux';
 import AddPost from '../side/AddPost';
 import CommentSection from './CommentSection';
 import PostSkeleton from '../common/PostSkeleton';
@@ -17,8 +17,6 @@ const Post = () => {
     const dispatch = useDispatch();
     const [data, setData] = useState({title: "", date_created: "", description: ""});
     const {board, post} = useParams();
-
-
     const history = useHistory();
 
     // add the board to the store
@@ -48,6 +46,7 @@ const Post = () => {
             .then(res => {
                 console.log(res);
                 setComment("");
+                dispatch(fetchComments({board, post}));
             })
             .catch(err => console.log(err));
     };

@@ -23,14 +23,13 @@ const AddPost = () => {
     const createPost = (e) => {
         e.preventDefault();
         const date_created = new Date();
-        console.log();
         addPost(board_id, title, date_created, contents)
             .then(res => {
                 console.log(res);
                 setContents("");
                 setTitle("");
                 closeAdd();
-                dispatch(fetchPosts(board_id, page));
+                dispatch(fetchPosts({board: board_id, page}));
             })
             .catch(err => console.log(err));
             

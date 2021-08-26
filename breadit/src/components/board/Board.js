@@ -18,13 +18,6 @@ const Board = () => {
     const currentPage = +page ?? 1;
     const dispatch = useDispatch();
 
-    console.log(currentPage, page);
-
-    // TODO: obtain the first 10 posts and display them
-    // retrieve id, title, description and date_created
-    
-    const posts = useSelector(state => state.posts);
-
     useEffect(() => {
         dispatch(selectPage(+currentPage));
   
@@ -32,11 +25,11 @@ const Board = () => {
         };
     }, [board, currentPage]);
     
-    useEffect(() => {
-        dispatch(fetchPosts({board, page: currentPage}));
-        return () => {
-        };
-    }, [board, currentPage]);
+    // useEffect(() => {
+    //     dispatch(fetchPosts({board, page}));
+    //     return () => {
+    //     };
+    // }, [board, page]);
 
     return (
         <>
@@ -47,7 +40,7 @@ const Board = () => {
                         ? 
                         <AddPost/>
                         :
-                        <PaginatedPreview posts={posts} />
+                        <PaginatedPreview />
                         // <>
                         //     {posts.length !== 0 ? 
                         //         // posts.map(elem => <PostPreview key={elem.post_id} data={elem} />)

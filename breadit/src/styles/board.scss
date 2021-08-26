@@ -1,7 +1,17 @@
 
+.paginated-preview{
+    padding-bottom: 2em;
+}
+
 .paginated-preview .buttons{
     width: 100%;
     display: flex;
     justify-content: space-between;
+    a{
+        text-decoration: none;
+    }
+    & > *{
+        align-self: center;
+    }
     
 }
