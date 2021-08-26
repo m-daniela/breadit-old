@@ -1,12 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { AddPostContext } from '../../context/AddPostProvider';
-import { fetchPosts, selectBoard, selectPage } from '../../store/redux';
+import { selectPage } from '../../store/redux';
 import { useDispatch, useSelector } from 'react-redux';
 import AddPost from '../side/AddPost';
-import PostPreview from './PostPreview';
 import Side from '../side/Side';
-import PostSkeleton from '../common/PostSkeleton';
 import Head from '../common/Head';
 import PaginatedPreview from './PaginatedPreview';
 
@@ -19,17 +17,13 @@ const Board = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(selectPage(+currentPage));
-  
-        return () => {
-        };
+        if (currentPage > 1){
+            dispatch(selectPage(currentPage));
+        }
+        else{
+            dispatch(selectPage(1));
+        }
     }, [board, currentPage]);
-    
-    // useEffect(() => {
-    //     dispatch(fetchPosts({board, page}));
-    //     return () => {
-    //     };
-    // }, [board, page]);
 
     return (
         <>
@@ -41,14 +35,6 @@ const Board = () => {
                         <AddPost/>
                         :
                         <PaginatedPreview />
-                        // <>
-                        //     {posts.length !== 0 ? 
-                        //         // posts.map(elem => <PostPreview key={elem.post_id} data={elem} />)
-                        //         <PaginatedPreview posts={posts}/>
-                        //         :
-                        //         <PostSkeleton />
-                        //     }
-                        // </>
                     }
                 </div>
                 <Side board={board}/>

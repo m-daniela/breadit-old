@@ -16,5 +16,5 @@ export const addCommentUrl = post => `${mainUrl}comment/${post}`;
 export const addReplyUrl = comment => `${mainUrl}reply/${comment}`;
 
 
-export const customBoard = (board, page=1) => `/${board}/page/${page}`;
+export const customBoard = (board, page=1) => page >= 1 ? `/${board}/page/${page}` : `/${board}/page/1`;
 export const customPost = (board, post) => `/${board}/post/${post}`;

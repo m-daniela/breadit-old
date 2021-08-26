@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import Comment from './Comment';
 import {useDispatch, useSelector} from "react-redux";
 import { fetchComments } from '../../store/redux';
@@ -15,7 +15,7 @@ const CommentSection = ({currentPost}) => {
         }
         return () => {
         };
-    }, [board_id]);
+    }, [currentPost, board_id]);
     
     return (
         <div className="comment-section">

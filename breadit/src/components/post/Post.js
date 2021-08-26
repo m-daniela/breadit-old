@@ -22,18 +22,16 @@ const Post = () => {
     // add the board to the store
     useEffect(() => {
         dispatch(selectBoard(board));
-        return () => {
-            
-        };
-    }, []);
-
-    // TODO: save this in the store so you don't have to fetch it again
-    useEffect(() => {
         getPost(post, board)
             .then(res => {
                 setData(res);
             })
             .catch(err => console.log(err));
+    }, []);
+
+    // TODO: save this in the store so you don't have to fetch it again
+    useEffect(() => {
+        
         return () => {
         };
     }, []);
@@ -44,7 +42,6 @@ const Post = () => {
         const date_created = new Date();
         addComment(post, comment, date_created)
             .then(res => {
-                console.log(res);
                 setComment("");
                 dispatch(fetchComments({board, post}));
             })

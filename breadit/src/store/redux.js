@@ -20,7 +20,7 @@ export const fetchPosts = createAsyncThunk(
 
 // fetch the comments for a selected post
 export const fetchComments = createAsyncThunk(
-    "posts/fetchPosts", 
+    "posts/fetchComments", 
     async ({ board, post }, thunkAPI) => {
         const posts = await getComments(board, post);
         return posts;
