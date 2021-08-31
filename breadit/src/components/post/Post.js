@@ -22,18 +22,15 @@ const Post = () => {
     // add the board to the store
     useEffect(() => {
         dispatch(selectBoard(board));
+    }, []);
+
+    // TODO: save this in the store so you don't have to fetch it again
+    useEffect(() => {
         getPost(post, board)
             .then(res => {
                 setData(res);
             })
             .catch(err => console.log(err));
-    }, []);
-
-    // TODO: save this in the store so you don't have to fetch it again
-    useEffect(() => {
-        
-        return () => {
-        };
     }, []);
 
 
@@ -74,7 +71,6 @@ const Post = () => {
                                 :
                                 <PostSkeleton />
                             }
-                        
                             <CommentSection currentPost={post}/>
                         </div>
                     </>}

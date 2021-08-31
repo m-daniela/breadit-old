@@ -1,5 +1,5 @@
 import axios from "axios";
-import { addCommentUrl, addPostUrl, addReplyUrl, boardUrl, mainUrl, commentsUrl, postUrl } from "./constants";
+import { addCommentUrl, addPostUrl, addReplyUrl, boardUrl, mainUrl, commentsUrl, postUrl, searchUrl } from "./constants";
 
 // get boards
 export const getBoards = () =>{
@@ -48,5 +48,15 @@ export const addComment = (post_id, contents, date_added) => {
 export const addReply = (post_id, contents, date_added, reply_to) => {
     return axios.post(addReplyUrl(post_id), {post_id, contents, date_added, reply_to})
         .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
+// search board
+export const getSearchResults = (board, query, page) => {
+    return axios.get(searchUrl(board, query, page))
+        .then(res => {
+            console.log(res.data);
+            return res.data;
+        })
         .catch(err => console.log(err));
 };

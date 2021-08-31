@@ -137,6 +137,37 @@ app.post(endpoints.reply, (req, res) => {
     });
 });
 
+// search the given query in the specified board
+app.get(endpoints.search, (req, res) => {
+    const {b: board, q: query, page} = req.query;
+    console.log(`GET /search/?b=${board}&q=${query}&page=${page}`);
+    const searchQuery = `%${query}%`;
+    const startIndex = (+page - 1) * 10;
+    const endIndex = startIndex + 10;
+
+    if (board){
+        const sql = "select * from posts where (title like ? or description like ?) and board_name = ? order by date_created desc limit ?, ?";
+        connection.query(sql, [searchQuery, searchQuery, board, startIndex, endIndex], (err, result) => {
+            if (err) {
+                console.log(`GET /search/?b=${board}&q=${query} error`, err);
+                res.json([])
+            }
+            else res.json(result);
+        });
+    }
+    else{
+        const sql = "select * from posts where title like ? or description like ? order by date_created desc limit ?, ?";
+        connection.query(sql, [searchQuery, searchQuery, startIndex, endIndex], (err, result) => {
+            if (err) {
+                console.log(`GET /search/?b=${board}&q=${query} error`, err);
+                res.json([])
+            }
+            else res.json(result);
+        });
+    }
+});
+
+
 // connect to the database and listen to the requests
 connectToDB()
     .then(() => app.listen(port, () => console.log(`Server started on port ${port}`)))

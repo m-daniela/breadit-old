@@ -1,10 +1,15 @@
 import { configureStore, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getComments, getPosts } from '../utils/serverCalls';
+import { getComments, getPosts, getSearchResults } from '../utils/serverCalls';
 
 const initialBoard = {};
 const initialPage = 1;
 const initialPosts = [];
 const initialComments = [];
+const initialSearch = {
+    query: "", 
+    results: []
+};
+
 
 // middleware
 
@@ -23,6 +28,15 @@ export const fetchComments = createAsyncThunk(
     "posts/fetchComments", 
     async ({ board, post }, thunkAPI) => {
         const posts = await getComments(board, post);
+        return posts;
+    }
+);
+
+// fetch the results of the searched query
+export const fetchSearch = createAsyncThunk(
+    "search/fetchSearch", 
+    async ({ board, query, page }, thunkAPI) => {
+        const posts = await getSearchResults(board, query, page);
         return posts;
     }
 );
@@ -69,6 +83,22 @@ const commentsSlice = createSlice({
     }
 });
 
+// search query and results
+const searchSlice = createSlice({
+    name: "search",
+    initialState: initialSearch,
+    reducers: {
+        updateSearch: (state, action) => {
+            state.query = action.payload;
+        }
+    },
+    extraReducers: {
+        [fetchSearch.fulfilled]: (state, action) => {
+            state.results = action.payload;
+        }
+    }
+});
+
 // export the actions
 export const {
     selectBoard
@@ -80,11 +110,16 @@ export const {
     selectPage
 } = pageSlice.actions;
 
+export const {
+    updateSearch
+} = searchSlice.actions;
+
 const reducer = {
     board: boardSlice.reducer,
     page: pageSlice.reducer, 
     comments: commentsSlice.reducer,
-    posts: postsSlice.reducer
+    posts: postsSlice.reducer,
+    search: searchSlice.reducer
 };
 
 

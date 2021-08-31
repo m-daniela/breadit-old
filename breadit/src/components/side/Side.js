@@ -1,17 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useCachedData } from '../../cache/useCachedData';
 import { AddPostContext } from '../../context/AddPostProvider';
-import { selectBoard } from '../../store/redux';
-import { customBoard } from '../../utils/constants';
+import { selectBoard, updateSearch } from '../../store/redux';
+import { customBoard, customSearch, routes, searchUrl } from '../../utils/constants';
 import BoardList from '../common/BoardList';
 
 const Side = ({board}) => {
     const {showAddOverlay} = useContext(AddPostContext);
     const boards = useCachedData();
+    // const search = useState(state => state.search.query);
     const [boardData, setBoardData] = useState({});
+    const [searchQuery, setSearchQuery] = useState("");
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(()=>{
         // get the information about the currently selected board
@@ -30,6 +33,16 @@ const Side = ({board}) => {
     const addPost = () => {
         showAddOverlay();
     };
+
+    const searchOnBoard = (e) =>{
+        e.preventDefault();
+        history.push({
+            pathname: routes.search,
+            search: customSearch(board, searchQuery)
+        });
+        dispatch(updateSearch(searchQuery));
+        
+    };
     
 
     return (
@@ -38,16 +51,16 @@ const Side = ({board}) => {
             
             <div>{boardData?.description}</div>
             <button id="add-post" onClick={addPost}>Add post</button>
-            <form>
+            <form onSubmit={e => searchOnBoard(e)}>
                 <label>
-                    Search
+                    Search in this board
                 </label>
-                <input type="text" />
-                <label>
-                    Search in board
-                </label>
-                <input type="text" />
+                <input type="text" onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery}/>
+                <button type="submit">Go</button>
+
             </form>
+            {/* <button>Advanced search</button> */}
+            
             <BoardList/>
         </div>
     );

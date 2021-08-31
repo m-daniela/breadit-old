@@ -8,7 +8,8 @@ const endpoints = {
     post: "/:board/post",
     postData: "/post/:board/:post",
     comment: "/comment/:post",
-    reply: "/reply/:comment"
+    reply: "/reply/:comment",
+    search: "/search/"
 };
 
 

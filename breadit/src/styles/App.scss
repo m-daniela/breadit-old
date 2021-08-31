@@ -27,7 +27,7 @@ body, a, input, button, textarea{
 input, button, textarea{
   background-color: var(--bg_input);
   border: none;
-  padding: 7px 10px;
+  padding: 10px 20px;
 }
 
 textarea{
@@ -36,6 +36,7 @@ textarea{
 
 button{
   width: fit-content;
+  font-size: 14px;
   &:hover{
     cursor: pointer;
   }
