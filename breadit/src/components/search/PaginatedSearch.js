@@ -8,13 +8,11 @@ import PostSkeleton from '../common/PostSkeleton';
 
 
 /**
- * Paginated Preview
- * Shows the 10 posts from the current page in descending order
- * based on the date added, if found
- * Otherwise, an error message is shown
+ * Paginated Search
+ * Shows the 10 posts from the search results, in descending order
+ * based on the date added, if found. Otherwise, an error is shown
  */
 const PaginatedSearch = ({query}) => {
-    // const {board_id} = useSelector(state => state.board);
     const board = query.get("b");
     const searchedQuery = query.get("q");
     const page = +query.get("page");
@@ -31,7 +29,7 @@ const PaginatedSearch = ({query}) => {
     const clickNextPage = () => {
         history.push({
             pathname: routes.search,
-            search: customSearch(board, searchedQuery, page + 1)
+            search: customSearch(searchedQuery, board, page + 1)
         });
         dispatch(nextPage());
     };
@@ -40,14 +38,14 @@ const PaginatedSearch = ({query}) => {
         if (page > 1){
             history.push({
                 pathname: routes.search,
-                search: customSearch(board, searchedQuery, page - 1)
+                search: customSearch(searchedQuery, board, page - 1)
             });
             dispatch(previousPage());
         }
         else{
             history.push({
                 pathname: routes.search,
-                search: customSearch(board, searchedQuery)
+                search: customSearch(searchedQuery, board)
             });
             dispatch(selectPage(1));
         }

@@ -8,9 +8,9 @@ import { getRelativeTime } from '../../utils/relativeTime';
 // 
 const PostPreview = ({data}) => {
     const {board_id} = useSelector(state => state.board);
-    const {post_id, title, description, date_created} = data;
+    const {post_id, title, description, date_created, board_name} = data;
     return (
-        <Link className="post-preview" to={customPost(board_id, post_id)}>
+        <Link className="post-preview" to={customPost(board_id ?? board_name, post_id)}>
             <h2>{title}</h2>
             <div className="preview-description">{description}</div>
             <div className="preview-date">{getRelativeTime(date_created)}</div>

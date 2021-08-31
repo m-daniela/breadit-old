@@ -54,9 +54,6 @@ export const addReply = (post_id, contents, date_added, reply_to) => {
 // search board
 export const getSearchResults = (board, query, page) => {
     return axios.get(searchUrl(board, query, page))
-        .then(res => {
-            console.log(res.data);
-            return res.data;
-        })
+        .then(res => res.data)
         .catch(err => console.log(err));
 };

@@ -1,66 +1,77 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
-import { useCachedData } from '../../cache/useCachedData';
-import { AddPostContext } from '../../context/AddPostProvider';
-import { selectBoard, updateSearch } from '../../store/redux';
-import { customBoard, customSearch, routes, searchUrl } from '../../utils/constants';
+import { useHistory } from 'react-router-dom';
+import { updateSearch } from '../../store/redux';
+import { customSearch, routes } from '../../utils/constants';
 import BoardList from '../common/BoardList';
+import CurrentBoard from './CurrentBoard';
 
 const Side = ({board}) => {
-    const {showAddOverlay} = useContext(AddPostContext);
-    const boards = useCachedData();
-    // const search = useState(state => state.search.query);
-    const [boardData, setBoardData] = useState({});
+    const [delay, setDelay] = useState(0);
     const [searchQuery, setSearchQuery] = useState("");
+    const [searchAdvancedQuery, setSearchAdvancedQuery] = useState("");
     const dispatch = useDispatch();
     const history = useHistory();
 
-    useEffect(()=>{
-        // get the information about the currently selected board
-        const getBoardInfo = (board, boards) => {
-            const result = boards.filter(elem => elem.board_id === board);
-            return result[0];
-        };
-
-        if (boards.length !== 0) { 
-            const boardInfo = getBoardInfo(board, boards);
-            setBoardData(boardInfo);
-            dispatch(selectBoard(boardInfo));
+    useEffect(() => {
+        if (searchQuery){
+            setDelay(setTimeout(() => {
+                searchOnBoard();
+            }, 1000));
+            return clearTimeout(delay);
         }
-    }, [board, boards]);
+        
+    }, [searchQuery]);
 
-    const addPost = () => {
-        showAddOverlay();
-    };
+    useEffect(() => {
+        if (searchAdvancedQuery){
+            setDelay(setTimeout(() => {
+                searchEverywhere();
+            }, 1000));
+            return clearTimeout(delay);
+        }
+        
+    }, [searchAdvancedQuery]);
 
     const searchOnBoard = (e) =>{
-        e.preventDefault();
+        e?.preventDefault();
         history.push({
             pathname: routes.search,
-            search: customSearch(board, searchQuery)
+            search: customSearch(searchQuery, board)
         });
-        dispatch(updateSearch(searchQuery));
-        
+    };
+
+    const searchEverywhere = (e) =>{
+        e?.preventDefault();
+        history.push({
+            pathname: routes.search,
+            search: customSearch(searchAdvancedQuery)
+        });
     };
     
 
     return (
         <div className="side">
-            <Link to={customBoard(board)}><h2>{boardData?.name}</h2></Link>
+            {board ? 
+                <>
+                    <CurrentBoard board={board}/>
+                    <form onSubmit={e => searchOnBoard(e)}>
+                        <label>
+                            Search in this board
+                        </label>
+                        <input type="text" onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery}/>
+                        <button type="submit">Go</button>
+                    </form>
+                </> : <></>}
             
-            <div>{boardData?.description}</div>
-            <button id="add-post" onClick={addPost}>Add post</button>
-            <form onSubmit={e => searchOnBoard(e)}>
+            <form onSubmit={e => searchEverywhere(e)}>
                 <label>
-                    Search in this board
+                    Search everywhere
                 </label>
-                <input type="text" onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery}/>
+                <input type="text" onChange={(e) => setSearchAdvancedQuery(e.target.value)} value={searchAdvancedQuery}/>
                 <button type="submit">Go</button>
 
             </form>
-            {/* <button>Advanced search</button> */}
-            
             <BoardList/>
         </div>
     );
