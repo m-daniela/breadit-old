@@ -3,7 +3,11 @@ import { Link } from 'react-router-dom';
 import { useCachedData } from '../../cache/useCachedData';
 import { customBoard } from '../../utils/constants';
 
-// Show the list of available boards
+/**
+ * Board List
+ * Shows the list of available boards, saved in the 
+ * cached list
+ */
 const BoardList = () => {
     const boards = useCachedData();
 

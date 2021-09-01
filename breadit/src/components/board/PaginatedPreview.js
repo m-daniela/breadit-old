@@ -25,6 +25,8 @@ const PaginatedPreview = () => {
         dispatch(fetchPosts({board: board_id, page}));
     }, [board_id, page]);
 
+    // change the page number on click and navigate to 
+    // the new page
     const clickNextPage = () => {
         history.push(customBoard(board_id, page+1));
         dispatch(nextPage());

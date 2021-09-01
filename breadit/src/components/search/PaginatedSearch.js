@@ -25,7 +25,8 @@ const PaginatedSearch = ({query}) => {
         dispatch(selectPage(page));
     }, [page]);
     
-
+    // change the page number on click and navigate to 
+    // the new page
     const clickNextPage = () => {
         history.push({
             pathname: routes.search,

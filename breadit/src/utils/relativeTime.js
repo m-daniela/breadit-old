@@ -22,5 +22,4 @@ export const getRelativeTime = (dateFrom) => {
             }
         }
     }
-    
 };

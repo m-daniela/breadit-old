@@ -7,17 +7,22 @@ import { AddPostContext } from '../../context/AddPostProvider';
 import { selectBoard } from '../../store/redux';
 import { customBoard } from '../../utils/constants';
 
+/**
+ * Current Board
+ * Display the information of the currently selected board 
+ * in the Side panel, as well as the option to add a new
+ * post. This component is not shown if no board is selected
+ * @param {*} board the id of the currently selected board
+ */
 const CurrentBoard = ({board}) => {
     const {showAddOverlay} = useContext(AddPostContext);
     const boards = useCachedData();
-    // const search = useState(state => state.search.query);
     const [boardData, setBoardData] = useState({});
-    const [searchQuery, setSearchQuery] = useState("");
     const dispatch = useDispatch();
-    const history = useHistory();
 
     useEffect(()=>{
         // get the information about the currently selected board
+        // from the cached data
         const getBoardInfo = (board, boards) => {
             const result = boards.filter(elem => elem.board_id === board);
             return result[0];
@@ -36,7 +41,6 @@ const CurrentBoard = ({board}) => {
     return (
         <>
             <Link to={customBoard(board)}><h2>{boardData?.name}</h2></Link>
-            
             <div>{boardData?.description}</div>
             <button id="add-post" onClick={addPost}>Add post</button>
         </>

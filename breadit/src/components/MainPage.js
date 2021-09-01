@@ -2,10 +2,12 @@ import React, { useState, useEffect, useContext } from 'react';
 import BoardList from './common/BoardList';
 import Head from './common/Head';
 
-// Main Page
-// display all the boards that are available
+/**
+ * Main Page
+ * Displays a welcome message and the available boards. 
+ * @returns 
+ */
 const MainPage = () => {
-    
     return (
         <>
             <Head title={"Breadit"}/>

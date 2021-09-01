@@ -6,11 +6,15 @@ import { addPost } from '../../utils/serverCalls';
 import { fetchPosts } from '../../store/redux';
 import Head from '../common/Head';
 
-// Add Post
-// form for creating a new post
-// the user needs to add the title and the body of the post
-// the board on which it should appear is derived from the 
-// currently selected board
+/**
+ * Add Post
+ * Form component that appears over the results listed in Board, 
+ * with the details needed for a new post: title and description
+ * The post is added to the currently selected board. 
+ * @returns 
+ * @todo add rce and handle photos and videos
+ */
+
 const AddPost = () => {
     const {showAddOverlay} = useContext(AddPostContext);
     const [title, setTitle] = useState("");
@@ -25,7 +29,6 @@ const AddPost = () => {
         const date_created = new Date();
         addPost(board_id, title, date_created, contents)
             .then(res => {
-                console.log(res);
                 setContents("");
                 setTitle("");
                 closeAdd();
@@ -36,6 +39,7 @@ const AddPost = () => {
     };
 
     const closeAdd = () => showAddOverlay();
+
     return (
         <>
             <Head title={`Add new post on ${name}`}/>

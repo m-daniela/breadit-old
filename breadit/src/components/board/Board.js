@@ -8,7 +8,11 @@ import Side from '../side/Side';
 import Head from '../common/Head';
 import PaginatedPreview from './PaginatedPreview';
 
-// 
+/**
+ * Board
+ * A component which shows post previews or an error message,
+ * of none could be fetched.
+ */
 const Board = () => {
     const {addPost} = useContext(AddPostContext);
     const {board, page} = useParams();
@@ -16,6 +20,9 @@ const Board = () => {
     const currentPage = +page ?? 1;
     const dispatch = useDispatch();
 
+    // set the current page, according to the given 
+    // page parameter
+    // TODO: change to query string?
     useEffect(() => {
         if (currentPage > 1){
             dispatch(selectPage(currentPage));

@@ -9,6 +9,7 @@
     @include flex-column;
     width: fit-content;
     padding: 5% 15%;
+    border-radius: var(--corners);
     h1{
         margin: 0 0 .2em 0;
     }

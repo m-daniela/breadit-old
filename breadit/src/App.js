@@ -11,7 +11,7 @@ import MainPage from "./components/MainPage";
 import Board from "./components/board/Board";
 import Post from "./components/post/Post";
 import AddPostProvider from "./context/AddPostProvider";
-import SimpleSearch from "./components/search/SimpleSearch";
+import Search from "./components/search/Search";
 
 
 function App() {
@@ -30,13 +30,12 @@ function App() {
                             <Post />
                         </Route>
                         <Route exact path={routes.search}>
-                            <SimpleSearch />
+                            <Search />
                         </Route>
                     </Switch>
                 </div>
             </AddPostProvider>
         </Router>
-        
     );
 }
 

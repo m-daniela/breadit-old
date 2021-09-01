@@ -6,6 +6,14 @@ import { customSearch, routes } from '../../utils/constants';
 import BoardList from '../common/BoardList';
 import CurrentBoard from './CurrentBoard';
 
+/**
+ * Side
+ * The side panel, containing the data about the currently selected
+ * board, the search bars and the list of existing boards, taken  
+ * from the cached state. 
+ * @param {number} board id of the selected board
+ * @returns 
+ */
 const Side = ({board}) => {
     const [delay, setDelay] = useState(0);
     const [searchQuery, setSearchQuery] = useState("");
@@ -13,6 +21,10 @@ const Side = ({board}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    // debounce for the "search in board" and "search
+    // everywhere" features
+    // delay data fetching for 1 second as the user
+    // types in the query
     useEffect(() => {
         if (searchQuery){
             setDelay(setTimeout(() => {

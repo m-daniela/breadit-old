@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-// Post skeleton
-// displayed when the user is waiting for the post/s to load
-// if nothing changes in ~5s, display an error message
+/**
+ * Post Skeleton
+ * Display a post skeleton when the user is waiting 
+ * for the posts to load. If nothing is fetched in 
+ * ~5s, show an error message. 
+ */
 const PostSkeleton = () => {
     const [showLoader, setShowLoader] = useState(true);
 
     useEffect(() => {
-        setTimeout(() => setShowLoader(false), 5000);
-
-        return () => {
-            
-        };
+        const delay = setTimeout(() => setShowLoader(false), 5000);
+        return clearTimeout(delay);
     }, []);
 
     return (
