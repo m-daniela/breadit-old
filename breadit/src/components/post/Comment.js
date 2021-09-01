@@ -4,9 +4,15 @@ import { fetchComments } from '../../store/redux';
 import { getRelativeTime } from '../../utils/relativeTime';
 import { addReply } from '../../utils/serverCalls';
 
+/**
+ * Comment
+ * Holds the comment data: the id, date added, and comment id the 
+ * user replies to. The user can see the 
+ * @param {*} data the comment data 
+ */
 const Comment = ({children, data}) => {
     const [open, setOpen] = useState(false);
-    const {comment_id, contents, date_added, post_id} = data;
+    const {comment_id, contents, date_added, post_id, reply_to} = data;
     const dispatch = useDispatch();
     const {board_id} = useSelector(state => state.board);
 
@@ -25,8 +31,9 @@ const Comment = ({children, data}) => {
     };
 
     return (
-        <div className="comment">
-            <span>#{comment_id} - {getRelativeTime(date_added)}</span>
+        <div className="comment" id={comment_id}>
+            <span>#{comment_id} {reply_to ? <> replied to <a href={`#${reply_to}`}>#{reply_to}</a></> : <></>} - {getRelativeTime(date_added)} 
+            </span>
             <div>{contents}</div>
             {open 
                 ?

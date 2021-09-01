@@ -3,7 +3,12 @@ import Comment from './Comment';
 import {useDispatch, useSelector} from "react-redux";
 import { fetchComments } from '../../store/redux';
 
-
+/**
+ * Comment Section
+ * Fetches and displays the comments for the given post, in a list
+ * ordered by posting date, descending. 
+ * @param {number} currentPost id of the currently selected post
+ */
 const CommentSection = ({currentPost}) => {
     const comments = useSelector(state => state.comments);
     const dispatch = useDispatch();
