@@ -38,7 +38,7 @@
     form{
         @include flex-column;
         margin-top: 1em;
-        div{
+        .buttons{
             @include flex-row;
             justify-content: flex-end;
         }

@@ -5,6 +5,7 @@
 @import "./post.scss";
 @import "./comments.scss";
 @import "./board.scss";
+@import "./rce.scss";
 
 
 
@@ -21,7 +22,6 @@ body, a, input, button, textarea{
   color: var(--font_color);
   border-radius: var(--corners);
   // font-size: 16px;
-
 }
 
 input, button, textarea{
@@ -32,6 +32,10 @@ input, button, textarea{
 
 textarea{
   height: 10em;
+}
+
+h2{
+  margin-bottom: .5em;
 }
 
 button{
@@ -65,3 +69,4 @@ button{
     padding-right: 0.6em;
   }
 }
+

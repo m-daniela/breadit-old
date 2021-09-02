@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { customPost } from '../../utils/constants';
 import {useSelector} from "react-redux";
 import { getRelativeTime } from '../../utils/relativeTime';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.bubble.css';
+
 
 /**
  * Post Preview
@@ -18,7 +21,12 @@ const PostPreview = ({data}) => {
     return (
         <Link className="post-preview" to={customPost(board_id ?? board_name, post_id)}>
             <h2>{title}</h2>
-            <div className="preview-description">{description}</div>
+            {/* <div className="preview-description">{description}</div> */}
+            <ReactQuill className="preview-description"
+                value={description}
+                readOnly={true}
+                theme={"bubble"}
+            />
             <div className="preview-date">{getRelativeTime(date_created)}</div>
         </Link>
     );

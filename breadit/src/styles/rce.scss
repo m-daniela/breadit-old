@@ -1,0 +1,42 @@
+
+.DraftEditor-root{
+    border: 1px solid var(--bg_input);
+}
+
+.quill{
+    display: unset !important;
+    min-height: 0;
+    flex: 1 1 auto;
+    font-size: 16px;
+    .ql-toolbar.ql-snow{
+        // display: block;
+        border: 1px solid var(--bg_input);
+        border-bottom: 1px solid var(--bg_primary);
+        background-color: var(--bg_input);
+
+        .ql-formats{
+            vertical-align: unset;
+            .ql-picker-label{
+                color: var(--font_color);
+            }
+            button{
+                margin: 0;
+            }
+        }
+    }
+    .ql-container.ql-snow{
+        height: 100%;
+        max-height: 10em;
+        overflow: auto;
+        border: 1px solid var(--bg_input);
+        background-color: var(--bg_input);
+    }
+    .ql-container{
+        font-size: 1em;
+        .ql-editor[contenteditable="false"]{
+            padding-left: 0;
+        }
+    }
+
+    
+}

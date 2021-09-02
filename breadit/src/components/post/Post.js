@@ -10,6 +10,10 @@ import PostSkeleton from '../common/PostSkeleton';
 import Side from '../side/Side';
 import { getRelativeTime } from '../../utils/relativeTime';
 import Head from '../common/Head';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.bubble.css';
+
 
 const Post = () => {
     const {addPost} = useContext(AddPostContext);
@@ -61,10 +65,14 @@ const Post = () => {
                                     <div className="post-info">
                                         <h1>{data.title}</h1>
                                         <div className="post-date">{getRelativeTime(data.date_created)}</div>
-                                        <div className="post-description">{data.description}</div>
+                                        <ReactQuill className="post-description"
+                                            value={data.description}
+                                            readOnly={true}
+                                            theme={"bubble"}
+                                        />
                                     </div>
                                     <form className="add-comment" onSubmit={writeComment}>
-                                        <textarea onChange={e => setComment(e.target.value)} value={comment} required/>
+                                        <ReactQuill theme="snow" value={comment} onChange={setComment} />
                                         <button>Add comment</button>
                                     </form>
                                 </>

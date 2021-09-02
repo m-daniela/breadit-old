@@ -17,6 +17,7 @@
     text-decoration: none;
     .preview-description{
         height: 100%;
+        overflow: hidden;
     }
     .preview-date{
         padding: .5em 0;
@@ -100,7 +101,7 @@
     form{
         margin: 1em 0;
     }
-    form div{
+    form .buttons{
         @include flex-row;
         justify-content: flex-end;
     }

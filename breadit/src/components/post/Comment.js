@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchComments } from '../../store/redux';
 import { getRelativeTime } from '../../utils/relativeTime';
 import { addReply } from '../../utils/serverCalls';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.bubble.css';
+
 
 /**
  * Comment
@@ -34,12 +38,17 @@ const Comment = ({children, data}) => {
         <div className="comment" id={comment_id}>
             <span>#{comment_id} {reply_to ? <> replied to <a href={`#${reply_to}`}>#{reply_to}</a></> : <></>} - {getRelativeTime(date_added)} 
             </span>
-            <div>{contents}</div>
+            <ReactQuill 
+                value={contents}
+                readOnly={true}
+                theme={"bubble"}
+            />
             {open 
                 ?
                 <form onSubmit={writeReply}>
-                    <textarea onChange={e => setReply(e.target.value)} value={reply} required/>
-                    <div>
+                    <ReactQuill theme="snow" value={reply} onChange={setReply}/>
+                    {/* <textarea onChange={e => setReply(e.target.value)} value={reply} required/> */}
+                    <div className="buttons">
                         <button onClick={() => setOpen(!open)}>Close</button>
                         <button type="submit">Add comment</button>
                     </div>
