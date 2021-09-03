@@ -70,18 +70,20 @@ const Side = ({board}) => {
                     <form onSubmit={e => searchOnBoard(e)}>
                         <label>
                             Search in this board
+                            <input type="text" onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery}/>
+                            <button type="submit">Go</button>
                         </label>
-                        <input type="text" onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery}/>
-                        <button type="submit">Go</button>
+                        
                     </form>
                 </> : <></>}
             
             <form onSubmit={e => searchEverywhere(e)}>
                 <label>
                     Search everywhere
+                    <input type="text" onChange={(e) => setSearchAdvancedQuery(e.target.value)} value={searchAdvancedQuery}/>
+                    <button type="submit">Go</button>
                 </label>
-                <input type="text" onChange={(e) => setSearchAdvancedQuery(e.target.value)} value={searchAdvancedQuery}/>
-                <button type="submit">Go</button>
+                
 
             </form>
             <BoardList/>

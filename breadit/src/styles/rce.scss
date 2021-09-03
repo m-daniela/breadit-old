@@ -35,6 +35,8 @@
         font-size: 1em;
         .ql-editor[contenteditable="false"]{
             padding-left: 0;
+            padding-right: 0;
+            // padding-top: 0;
         }
     }
 

@@ -30,6 +30,10 @@ input, button, textarea{
   padding: 10px 20px;
 }
 
+a, button{
+  cursor: pointer;
+}
+
 textarea{
   height: 10em;
 }
@@ -70,3 +74,39 @@ button{
   }
 }
 
+
+// scrollbars
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+}
+
+.ql-editor{
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-track) var(--scroll-thumb);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scroll-track);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb);
+  border-radius: 20px;
+  border: none;
+}
+
+.ql-editor::-webkit-scrollbar-track {
+  background: var(--scroll-thumb);
+}
+
+.ql-editor::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-track);
+}

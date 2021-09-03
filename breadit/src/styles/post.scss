@@ -11,13 +11,28 @@
     margin: 1.5em 0;
 }
 
+
 .post-preview{
     max-height: 350px;
     border-radius: var(--corners);
     text-decoration: none;
-    .preview-description{
-        height: 100%;
+    &:not(.skeleton) .preview-description{
+        position: relative;
         overflow: hidden;
+        height: 100%;
+        div.ql-container.ql-bubble.ql-disabled div.ql-editor{
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        &::after{
+           content: "";
+           position: absolute;
+           top: 5em;
+           left: 0;
+           bottom: 0;
+           right: 0;
+           background: linear-gradient(to top, var(--bg_secondary) 0%, rgba(0, 0, 0, 0)) 3%;
+       } 
     }
     .preview-date{
         padding: .5em 0;
@@ -27,17 +42,17 @@
 
 .post{
     & > button{
-        margin: 2em 0;
+        margin-top: 2em;
     }
     .post-info{
         h1{
-            margin-bottom: 1px;
+            margin-bottom: 0;
         }
         .post-description{
             height: 100%;
         }
         .post-date{
-            padding: 1px 0 .7em 0;
+            padding: 0 0 .7em 0;
             font-size: .9em;
 
         }

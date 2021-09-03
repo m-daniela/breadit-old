@@ -11,7 +11,7 @@ const PostSkeleton = () => {
 
     useEffect(() => {
         const delay = setTimeout(() => setShowLoader(false), 5000);
-        return clearTimeout(delay);
+        // return clearTimeout(delay);
     }, []);
 
     return (

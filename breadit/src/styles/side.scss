@@ -24,6 +24,14 @@
         margin-bottom: 1em;
         label{
             margin: 1em 0 .5em 0;
+            input{
+                border-radius: var(--corners) 0 0 var(--corners);
+            }
+            button{
+                border-radius: 0 var(--corners) var(--corners) 0;
+                line-height: 1.15;
+                border-left: 1px solid var(--bg_secondary);
+            }
         }
     }
     .boards a{

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { customPost } from '../../utils/constants';
 import {useSelector} from "react-redux";
@@ -18,10 +18,19 @@ import 'react-quill/dist/quill.bubble.css';
 const PostPreview = ({data}) => {
     const {board_id} = useSelector(state => state.board);
     const {post_id, title, description, date_created, board_name} = data;
+
+    const ref = createRef();
+
+    useEffect(() => {
+        if (ref.current?.clientHeight < ref.current?.scrollHeight){
+            console.log("overflowing");
+        }
+    }, []);
+
+
     return (
         <Link className="post-preview" to={customPost(board_id ?? board_name, post_id)}>
             <h2>{title}</h2>
-            {/* <div className="preview-description">{description}</div> */}
             <ReactQuill className="preview-description"
                 value={description}
                 readOnly={true}

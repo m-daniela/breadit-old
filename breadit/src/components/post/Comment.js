@@ -14,7 +14,7 @@ import 'react-quill/dist/quill.bubble.css';
  * user replies to. The user can see the 
  * @param {*} data the comment data 
  */
-const Comment = ({children, data}) => {
+const Comment = ({data}) => {
     const [open, setOpen] = useState(false);
     const {comment_id, contents, date_added, post_id, reply_to} = data;
     const dispatch = useDispatch();
@@ -36,7 +36,8 @@ const Comment = ({children, data}) => {
 
     return (
         <div className="comment" id={comment_id}>
-            <span>#{comment_id} {reply_to ? <> replied to <a href={`#${reply_to}`}>#{reply_to}</a></> : <></>} - {getRelativeTime(date_added)} 
+            <span>
+                <span>#{comment_id} {reply_to ? <> replied to <a href={`#${reply_to}`}> #{reply_to}</a></> : <></>} - {getRelativeTime(date_added)} {">>>"} <a onClick={() => setOpen(!open)}>Reply</a> </span> 
             </span>
             <ReactQuill 
                 value={contents}
@@ -55,10 +56,10 @@ const Comment = ({children, data}) => {
                     
                 </form>
                 :
-                <button onClick={() => setOpen(!open)}>Reply</button>
+                // <a onClick={() => setOpen(!open)}>Reply</a>
+                <></>
+                // <button onClick={() => setOpen(!open)}>Reply</button>
             }
-            
-            {children}
         </div>
     );
 };
