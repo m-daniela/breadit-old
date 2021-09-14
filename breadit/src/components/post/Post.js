@@ -52,37 +52,40 @@ const Post = () => {
     return (
         <>
             <Head title={data.title} />
-            <div className="post-wrapper">
-                {addPost 
-                    ?
-                    <AddPost/>
-                    :
-                    <>
-                        <div className="post">
-                            <button onClick={history.goBack}>Go back</button>
-                            {data.title ?
-                                <> 
-                                    <div className="post-info">
-                                        <h1>{data.title}</h1>
-                                        <div className="post-date">{getRelativeTime(data.date_created)}</div>
-                                        <ReactQuill className="post-description"
-                                            value={data.description}
-                                            readOnly={true}
-                                            theme={"bubble"}
-                                        />
-                                    </div>
-                                    <form className="add-comment" onSubmit={writeComment}>
-                                        <ReactQuill theme="snow" value={comment} onChange={setComment} />
-                                        <button>Add comment</button>
-                                    </form>
-                                </>
-                                :
-                                <PostSkeleton />
-                            }
-                            <CommentSection currentPost={post}/>
-                        </div>
-                    </>}
+            <div className="board-wrapper">
+                <div className="post-wrapper">
+                    {addPost 
+                        ?
+                        <AddPost/>
+                        :
+                        <>
+                            <div className="post">
+                                <button onClick={history.goBack}>Go back</button>
+                                {data.title ?
+                                    <> 
+                                        <div className="post-info">
+                                            <h1>{data.title}</h1>
+                                            <div className="post-date">{getRelativeTime(data.date_created)}</div>
+                                            <ReactQuill className="post-description"
+                                                value={data.description}
+                                                readOnly={true}
+                                                theme={"bubble"}
+                                            />
+                                        </div>
+                                        <form className="add-comment" onSubmit={writeComment}>
+                                            <ReactQuill theme="snow" value={comment} onChange={setComment} />
+                                            <button>Add comment</button>
+                                        </form>
+                                    </>
+                                    :
+                                    <PostSkeleton />
+                                }
+                                <CommentSection currentPost={post}/>
+                            </div>
+                        </>}
+                </div>
                 <Side board={board}/>
+
             </div>
         </>
     );

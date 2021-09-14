@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { updateSearch } from '../../store/redux';
-import { customSearch, routes } from '../../utils/constants';
+import { customBoard, customSearch, routes } from '../../utils/constants';
 import BoardList from '../common/BoardList';
 import CurrentBoard from './CurrentBoard';
 
@@ -17,8 +17,8 @@ import CurrentBoard from './CurrentBoard';
 const Side = ({board}) => {
     const [delay, setDelay] = useState(0);
     const [searchQuery, setSearchQuery] = useState("");
+    const [open, setOpen] = useState(true);
     const [searchAdvancedQuery, setSearchAdvancedQuery] = useState("");
-    const dispatch = useDispatch();
     const history = useHistory();
 
     // debounce for the "search in board" and "search
@@ -63,31 +63,40 @@ const Side = ({board}) => {
     
 
     return (
-        <div className="side">
-            {board ? 
-                <>
-                    <CurrentBoard board={board}/>
-                    <form onSubmit={e => searchOnBoard(e)}>
-                        <label>
+        <>
+            <div className="header-mobile">
+                <Link to={routes.main}>breadit</Link>
+                <Link to={customBoard(board)}>{board}</Link>
+                <span onClick={(e) => setOpen(!open)}>|||</span>
+            </div>
+            <div className={`side ${open ? "" : "mobile"}`}>
+                <Link id="logo" to={routes.main}>Breadit logo</Link>
+                
+                {board ? 
+                    <>
+                        <CurrentBoard board={board}/>
+                        <form onSubmit={e => searchOnBoard(e)}>
+                            <label>
                             Search in this board
-                            <input type="text" onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery}/>
-                            <button type="submit">Go</button>
-                        </label>
+                                <input type="text" onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery}/>
+                                <button type="submit">Go</button>
+                            </label>
                         
-                    </form>
-                </> : <></>}
+                        </form>
+                    </> : <></>}
             
-            <form onSubmit={e => searchEverywhere(e)}>
-                <label>
+                <form onSubmit={e => searchEverywhere(e)}>
+                    <label>
                     Search everywhere
-                    <input type="text" onChange={(e) => setSearchAdvancedQuery(e.target.value)} value={searchAdvancedQuery}/>
-                    <button type="submit">Go</button>
-                </label>
+                        <input type="text" onChange={(e) => setSearchAdvancedQuery(e.target.value)} value={searchAdvancedQuery}/>
+                        <button type="submit">Go</button>
+                    </label>
                 
 
-            </form>
-            <BoardList/>
-        </div>
+                </form>
+                <BoardList/>
+            </div>
+        </>
     );
 };
 

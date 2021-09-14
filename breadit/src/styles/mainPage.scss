@@ -2,19 +2,40 @@
 .main-wrapper{
     @include centered-container;
     height: 100vh;
+    // width: calc(100% - 4em);
+    padding: 2em;
 }
 
 .main{
     @include centered-container;
     @include flex-column;
-    width: fit-content;
-    padding: 5% 15%;
+    // width: fit-content;
+    width: 25%;
+    margin: 0 auto;
+    // padding: 5% 15%;
+    padding: 5em 10em;
     border-radius: var(--corners);
     h1{
         margin: 0 0 .2em 0;
     }
     p{
-        margin-bottom: 5em;
+        margin-bottom: 3em;
     }
     
+}
+
+
+@media screen and (max-width: 700px) {
+    .main{
+        // margin: auto;
+        padding: 2.5em 3em;
+        width: 60%;
+        // width: calc(100% - 34em);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .main{
+        width: 70%;
+    }
 }

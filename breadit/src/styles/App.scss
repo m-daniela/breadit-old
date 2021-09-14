@@ -50,7 +50,7 @@ button{
   }
 }
 
-.main, .post, .side, .post-preview, .add-post, .skeleton-error {
+.main, .post, .side, .header-mobile, .post-preview, .add-post, .skeleton-error {
   background-color: var(--bg_secondary);
 }
 
@@ -65,8 +65,9 @@ button{
 .boards{
   @include flex-row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
+  padding-bottom: 2em;
   a {
     flex-basis: 20%;
     text-align: center;
@@ -109,4 +110,30 @@ button{
 
 .ql-editor::-webkit-scrollbar-thumb {
   background-color: var(--scroll-track);
+}
+
+
+
+
+@media (max-width: 900px) {
+  .board-wrapper, .post-wrapper{
+    @include flex-column;
+    order: 1;
+  }
+  .board, .post-wrapper{
+    order: 1;
+    padding: 1em 2em;
+  }
+  .post-preview, .post, .add-post, .skeleton-error{
+    width: calc(100% - 5em);
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+  .board, .post-wrapper{
+    order: 1;
+    padding: 1em;
+    overflow: hidden;
+  }
 }

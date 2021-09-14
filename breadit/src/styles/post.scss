@@ -1,4 +1,9 @@
 
+
+.post-wrapper{
+    padding: 1em;
+}
+
 .post-preview, .post, .add-post, .add-post form{
     @include flex-column;
 
@@ -6,7 +11,9 @@
 
 .post-preview, .post, .skeleton-error{
     text-align: justify;
+    // width: 100%;
     width: 500px;
+    // display: inline-block;
     padding: 0 2.5em 1em 2.5em;
     margin: 1.5em 0;
 }
@@ -133,6 +140,5 @@
             filter: invert(100%);
         }
     }
-
-
 }
+
