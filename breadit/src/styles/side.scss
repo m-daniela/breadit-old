@@ -2,6 +2,7 @@
 
 .header-mobile{
     @include flex-row;
+    position: sticky;
     justify-content: space-between;
     a, span{
         padding: .7em;
@@ -15,21 +16,11 @@
     @include flex-column;
 }
 
-.side-wrapper{
-    height: 100vh;
-    width: 15em;
-    padding: 0 2.5em;
-    margin: 0 2em;
-    overflow-y: auto;
-    position: sticky;
-    top: 0;
-    bottom: 0;
-}
 
 .side, .side.mobile{
-    height: 100vh;
+    height: calc(100vh - 2em);
     width: 15em;
-    padding: 0 2.5em;
+    padding: 0 2.5em 2em 2.5em;
     margin: 0 2em;
     overflow-y: auto;
     position: sticky;
@@ -52,8 +43,9 @@
             display: flex;
             flex-wrap: wrap;
             margin: 1em 0 .5em 0;
-            &:first-child{
+            span{
                 flex-basis: 100%;
+                padding-bottom: .5em;
             }
             input{
                 border-radius: var(--corners) 0 0 var(--corners);
@@ -95,6 +87,19 @@
         bottom: 0;
         right: 0;
         z-index: 100;
+        
     }
+    // .header-mobile{
+    //     &::after{
+    //         content: "";
+    //         position: absolute;
+    //         z-index: 99;
+    //         background-color: green;
+    //         top: 43px;
+    //         left: 0;
+    //         bottom: -100vh;
+    //         right: 0;
+    //       }
+    // }
     
 }

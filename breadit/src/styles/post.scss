@@ -48,6 +48,7 @@
 }
 
 .post{
+    border-radius: var(--corners);
     & > button{
         margin-top: 2em;
     }

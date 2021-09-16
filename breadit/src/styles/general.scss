@@ -10,6 +10,17 @@
     --corners: 3px;
 }
 
+[data-theme="light"]{
+    --bg_primary: #ffffff;
+    --bg_secondary: #f2f2f2;
+    --bg_input: #e0e0e0;
+    --font_color: #222222;
+    --highglight_comment: #dbdbdb;
+    --scroll-thumb: #cfcfcf;
+    --scroll-track: #f2f2f2;
+}
+
+
 @mixin flex-column{
     display: flex;
     flex-direction: column;

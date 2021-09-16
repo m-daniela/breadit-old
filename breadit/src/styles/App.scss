@@ -75,6 +75,15 @@ button{
   }
 }
 
+.theme-toggle{
+  margin-top: auto;
+  svg{
+    padding: 5px;
+    border-radius: var(--corners);
+    background-color: var(--bg_input);
+
+  }
+}
 
 // scrollbars
 
@@ -135,5 +144,6 @@ button{
     order: 1;
     padding: 1em;
     overflow: hidden;
+    
   }
 }

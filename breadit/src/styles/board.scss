@@ -8,18 +8,17 @@
 .paginated-preview{
     padding-bottom: 2em;
     // width: 30em;
-
-}
-
-.paginated-preview .buttons{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    a{
-        text-decoration: none;
+    .buttons{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        a{
+            text-decoration: none;
+        }
+        & > *{
+            align-self: center;
+        }
+        
     }
-    & > *{
-        align-self: center;
-    }
-    
+
 }

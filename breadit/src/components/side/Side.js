@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { updateSearch } from '../../store/redux';
 import { customBoard, customSearch, routes } from '../../utils/constants';
 import BoardList from '../common/BoardList';
+import ThemeToggle from '../common/ThemeToggle';
 import CurrentBoard from './CurrentBoard';
 
 /**
@@ -77,9 +76,9 @@ const Side = ({board}) => {
                         <CurrentBoard board={board}/>
                         <form onSubmit={e => searchOnBoard(e)}>
                             <label>
-                            Search in this board
-                                <input type="text" onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery}/>
-                                <button type="submit">Go</button>
+                                <span>Search in this board</span>
+                                <input id="search-board" type="text" onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery}/>
+                                <button id="search-board-go" type="submit">Go</button>
                             </label>
                         
                         </form>
@@ -87,14 +86,16 @@ const Side = ({board}) => {
             
                 <form onSubmit={e => searchEverywhere(e)}>
                     <label>
-                    Search everywhere
-                        <input type="text" onChange={(e) => setSearchAdvancedQuery(e.target.value)} value={searchAdvancedQuery}/>
-                        <button type="submit">Go</button>
+                        <span>Search everywhere</span>
+                        <input id="search-everywhere" type="text" onChange={(e) => setSearchAdvancedQuery(e.target.value)} value={searchAdvancedQuery}/>
+                        <button id="search-everywhere-go" type="submit">Go</button>
                     </label>
                 
 
                 </form>
                 <BoardList/>
+                <ThemeToggle/>
+
             </div>
         </>
     );
