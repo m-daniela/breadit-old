@@ -34,6 +34,9 @@
         margin-bottom: .2em;
         font-weight: normal;
     }
+    h2{
+        margin-top: .2em;
+    }
     button{
         margin: 1em 0;
     }
@@ -66,40 +69,37 @@
     }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1000px) {
     .header-mobile{
       display: none;
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     #logo{
         display: none;
     }
     .side{
         display: none;
     }
-    .side.mobile{
+
+    .overlay, .side.mobile{
         display: flex;
         position: absolute;
         margin: 0;
-        top: 2.5em;
+        top: 3.15em;
         bottom: 0;
         right: 0;
         z-index: 100;
+    }
+    .side.mobile{
+        height: calc(100vh - 2em - 3.15em);
+        top: 0;
         
     }
-    // .header-mobile{
-    //     &::after{
-    //         content: "";
-    //         position: absolute;
-    //         z-index: 99;
-    //         background-color: green;
-    //         top: 43px;
-    //         left: 0;
-    //         bottom: -100vh;
-    //         right: 0;
-    //       }
-    // }
-    
+    .overlay{
+        height: calc(100vh - 3.15em);
+        width: 100%;
+        background-color: var(--overlay);
+    }
 }

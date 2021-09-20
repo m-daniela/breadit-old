@@ -81,7 +81,6 @@ button{
     padding: 5px;
     border-radius: var(--corners);
     background-color: var(--bg_input);
-
   }
 }
 
@@ -124,7 +123,7 @@ button{
 
 
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .board-wrapper, .post-wrapper{
     @include flex-column;
     order: 1;
@@ -135,6 +134,7 @@ button{
   }
   .post-preview, .post, .add-post, .skeleton-error{
     width: calc(100% - 5em);
+    margin-top: 0;
   }
 
 }

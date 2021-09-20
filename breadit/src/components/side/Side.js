@@ -5,6 +5,12 @@ import BoardList from '../common/BoardList';
 import ThemeToggle from '../common/ThemeToggle';
 import CurrentBoard from './CurrentBoard';
 
+import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
+
+import breadit_logo50 from "../../breadit_logo50.svg";
+
+
 /**
  * Side
  * The side panel, containing the data about the currently selected
@@ -44,6 +50,16 @@ const Side = ({board}) => {
         
     }, [searchAdvancedQuery]);
 
+    useEffect(() => {
+        if (!open){
+            document.querySelector("body").style.overflow = "hidden";
+        }
+        else{
+            document.querySelector("body").style.overflow = "visible";
+        }
+        
+    }, [open]);
+
     const searchOnBoard = (e) =>{
         e?.preventDefault();
         history.push({
@@ -66,36 +82,38 @@ const Side = ({board}) => {
             <div className="header-mobile">
                 <Link to={routes.main}>breadit</Link>
                 <Link to={customBoard(board)}>{board}</Link>
-                <span onClick={(e) => setOpen(!open)}>|||</span>
+                <span onClick={(e) => setOpen(!open)}>{open ? <MenuRoundedIcon/> : <CloseRoundedIcon />}</span>
             </div>
-            <div className={`side ${open ? "" : "mobile"}`}>
-                <Link id="logo" to={routes.main}>Breadit logo</Link>
+            <div className={`${open ? "" : "overlay"}`} onClick={() => setOpen(!open)}>
+                <div className={`side ${open ? "" : "mobile"}`}>
+                    <Link id="logo" to={routes.main}><img src={breadit_logo50}/></Link>
                 
-                {board ? 
-                    <>
-                        <CurrentBoard board={board}/>
-                        <form onSubmit={e => searchOnBoard(e)}>
-                            <label>
-                                <span>Search in this board</span>
-                                <input id="search-board" type="text" onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery}/>
-                                <button id="search-board-go" type="submit">Go</button>
-                            </label>
+                    {board ? 
+                        <>
+                            <CurrentBoard board={board}/>
+                            <form onSubmit={e => searchOnBoard(e)}>
+                                <label>
+                                    <span>Search in this board</span>
+                                    <input id="search-board" type="text" onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery}/>
+                                    <button id="search-board-go" type="submit">Go</button>
+                                </label>
                         
-                        </form>
-                    </> : <></>}
+                            </form>
+                        </> : <></>}
             
-                <form onSubmit={e => searchEverywhere(e)}>
-                    <label>
-                        <span>Search everywhere</span>
-                        <input id="search-everywhere" type="text" onChange={(e) => setSearchAdvancedQuery(e.target.value)} value={searchAdvancedQuery}/>
-                        <button id="search-everywhere-go" type="submit">Go</button>
-                    </label>
+                    <form onSubmit={e => searchEverywhere(e)}>
+                        <label>
+                            <span>Search everywhere</span>
+                            <input id="search-everywhere" type="text" onChange={(e) => setSearchAdvancedQuery(e.target.value)} value={searchAdvancedQuery}/>
+                            <button id="search-everywhere-go" type="submit">Go</button>
+                        </label>
                 
 
-                </form>
-                <BoardList/>
-                <ThemeToggle/>
+                    </form>
+                    <BoardList/>
+                    <ThemeToggle/>
 
+                </div>
             </div>
         </>
     );
