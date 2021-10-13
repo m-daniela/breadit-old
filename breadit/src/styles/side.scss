@@ -27,7 +27,14 @@
     top: 0;
     bottom: 0;
     #logo{
+        display: flex;
         padding-top: 2.5em;
+        font-size: 1.5em;
+        text-decoration: none;
+
+        img{
+            margin-right: 5px;
+        }
     }
     h2, h1 {
         padding-top: .5em;
@@ -41,15 +48,13 @@
         margin: 1em 0;
     }
     form {
-        margin-bottom: 1em;
+        margin: .7em 0;     
         label{
+            padding-bottom: 0;
+        }
+        .query{
             display: flex;
-            flex-wrap: wrap;
-            margin: 1em 0 .5em 0;
-            span{
-                flex-basis: 100%;
-                padding-bottom: .5em;
-            }
+            margin: .5em 0;
             input{
                 border-radius: var(--corners) 0 0 var(--corners);
             }

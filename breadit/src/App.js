@@ -4,9 +4,9 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
+import './styles/main.scss';
 
 import {routes} from "./utils/constants";
-import './styles/App.scss';
 import MainPage from "./components/MainPage";
 import Board from "./components/board/Board";
 import Post from "./components/post/Post";

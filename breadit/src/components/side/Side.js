@@ -17,7 +17,6 @@ import breadit_logo50 from "../../breadit_logo50.svg";
  * board, the search bars and the list of existing boards, taken  
  * from the cached state. 
  * @param {number} board id of the selected board
- * @returns 
  */
 const Side = ({board}) => {
     const [delay, setDelay] = useState(0);
@@ -86,27 +85,29 @@ const Side = ({board}) => {
             </div>
             <div className={`${open ? "" : "overlay"}`} onClick={() => setOpen(!open)}>
                 <div className={`side ${open ? "" : "mobile"}`}>
-                    <Link id="logo" to={routes.main}><img src={breadit_logo50}/></Link>
+                    <Link id="logo" to={routes.main}>
+                        <img src={breadit_logo50}/>
+                        Breadit
+                    </Link>
                 
                     {board ? 
                         <>
                             <CurrentBoard board={board}/>
                             <form onSubmit={e => searchOnBoard(e)}>
-                                <label>
-                                    <span>Search in this board</span>
+                                <label>Search in this board</label>
+                                <div className="query">
                                     <input id="search-board" type="text" onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery}/>
                                     <button id="search-board-go" type="submit">Go</button>
-                                </label>
-                        
+                                </div>
                             </form>
                         </> : <></>}
             
                     <form onSubmit={e => searchEverywhere(e)}>
-                        <label>
-                            <span>Search everywhere</span>
+                        <label>Search everywhere</label>
+                        <div className="query">
                             <input id="search-everywhere" type="text" onChange={(e) => setSearchAdvancedQuery(e.target.value)} value={searchAdvancedQuery}/>
                             <button id="search-everywhere-go" type="submit">Go</button>
-                        </label>
+                        </div>
                 
 
                     </form>

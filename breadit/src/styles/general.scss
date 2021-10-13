@@ -1,4 +1,8 @@
 
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+
 :root{
     --bg_primary: #151515FF;
     --bg_secondary: #1F1F1FFF;
@@ -6,8 +10,9 @@
     --font_color: #DBDBDBFF;
     --highglight_comment: #2c2c2c;
     --overlay: #151515AA;
-    --scroll-thumb: #363636FF;
-    --scroll-track: #1F1F1FFF;
+    --scroll_thumb: #363636FF;
+    --scroll_track: #1F1F1FFF;
+    --font_family: 'PT Sans', sans-serif;
     --corners: 3px;
 }
 
@@ -17,8 +22,8 @@
     --bg_input: #e0e0e0;
     --font_color: #222222;
     --highglight_comment: #dbdbdb;
-    --scroll-thumb: #cfcfcf;
-    --scroll-track: #f2f2f2;
+    --scroll_thumb: #cfcfcf;
+    --scroll_track: #f2f2f2;
 }
 
 

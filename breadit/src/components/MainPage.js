@@ -7,7 +7,6 @@ import ThemeToggle from './common/ThemeToggle';
 /**
  * Main Page
  * Displays a welcome message and the available boards. 
- * @returns 
  */
 const MainPage = () => {
     return (
@@ -16,9 +15,9 @@ const MainPage = () => {
             <div className="main-wrapper">
                 <div className="main">
                     <h1>Breadit</h1>
-                    <p>Write stuff and all that</p>
+                    <p>the cookbook of the internet</p>
                     <BoardList/>
-                    <ThemeToggle/>
+                    {/* <ThemeToggle/> */}
                 </div>
             </div>
         </>

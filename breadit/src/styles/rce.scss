@@ -8,6 +8,7 @@
     min-height: 0;
     flex: 1 1 auto;
     font-size: 16px;
+
     .ql-toolbar.ql-snow{
         // display: block;
         border: 1px solid var(--bg_input);
@@ -38,6 +39,7 @@
             padding-left: 0;
             padding-right: 0;
             // padding-top: 0;
+            font-family: var(--font_family);
         }
     }
 
