@@ -69,6 +69,12 @@ const pageSlice = createSlice({
 const postsSlice = createSlice({
     name: "posts",
     initialState: initialPosts,
+    reducers: {
+        removePost: (state, action) => {
+            const posts = state.filter(post => post.post_id !== action.payload);
+            return posts;
+        }
+    },
     extraReducers: {
         [fetchPosts.fulfilled]: (state, action) => action.payload
     }
@@ -78,6 +84,12 @@ const postsSlice = createSlice({
 const commentsSlice = createSlice({
     name: "comments",
     initialState: initialComments,
+    reducers: {
+        removeComment: (state, action) => {
+            const comments = state.filter(comment => comment.comment_id !== action.payload);
+            return comments;
+        }
+    },
     extraReducers: {
         [fetchComments.fulfilled]: (state, action) => action.payload
     }
@@ -113,6 +125,14 @@ export const {
 export const {
     updateSearch
 } = searchSlice.actions;
+
+export const {
+    removeComment
+} = commentsSlice.actions;
+
+export const {
+    removePost
+} = postsSlice.actions;
 
 const reducer = {
     board: boardSlice.reducer,

@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchComments } from '../../store/redux';
+import { fetchComments, removeComment } from '../../store/redux';
 import { getRelativeTime } from '../../utils/relativeTime';
-import { addReply } from '../../utils/serverCalls';
+import { addReply, deleteComment } from '../../utils/serverCalls';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
@@ -37,9 +37,19 @@ const Comment = ({data}) => {
             .catch(err => console.log(err));
     };
 
+    const handleRemoveComment = () => {
+        deleteComment(comment_id)
+            .then(res => {
+                if (res.success){
+                    dispatch(removeComment(comment_id));
+                }
+            })
+            .catch(err => console.log(err));
+    };
+
     return (
         <div className="comment" id={comment_id}>
-            {isLogged && <CloseRounded className="delete-item"/>}
+            {isLogged && <CloseRounded className="delete-item" onClick={handleRemoveComment}/>}
 
             <span>
                 <span>#{comment_id} {reply_to ? <> replied to <a href={`#${reply_to}`}> #{reply_to}</a></> : <></>} - {getRelativeTime(date_added)} {">>>"} <a onClick={() => setOpen(!open)}>Reply</a> </span> 

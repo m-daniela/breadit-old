@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { AddPostContext } from '../../context/AddPostProvider';
-import { addComment, getPost } from '../../utils/serverCalls';
+import { addComment, deletePost, getPost } from '../../utils/serverCalls';
 import {useDispatch} from "react-redux";
-import {fetchComments, selectBoard} from '../../store/redux';
+import {fetchComments, removePost, selectBoard} from '../../store/redux';
 import AddPost from '../side/AddPost';
 import CommentSection from './CommentSection';
 import PostSkeleton from '../common/PostSkeleton';
@@ -51,6 +51,18 @@ const Post = () => {
             })
             .catch(err => console.log(err));
     };
+
+    const handleRemovePost = (e) => {
+        e.preventDefault();
+        deletePost(post)
+            .then(res => {
+                if (res.success){
+                    dispatch(removePost(post));
+                    history.goBack();
+                }
+            })
+            .catch(err => console.log(err));
+    };
     
     return (
         <>
@@ -64,7 +76,7 @@ const Post = () => {
                         <>
                             <div className="post">
                                 <button onClick={history.goBack}>Go back</button>
-                                {isLogged && <CloseRounded className="delete-item"/>}
+                                {isLogged && <CloseRounded className="delete-item" onClick={handleRemovePost}/>}
 
                                 {data.title ?
                                     <> 

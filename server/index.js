@@ -196,6 +196,48 @@ app.get(endpoints.search, (req, res) => {
 });
 
 
+// delete the specified post
+app.delete(endpoints.deletePost, (req, res) => {
+    const post = req.params.post;
+    console.log(`Delete /post/${post}`);
+    console.log(req.params);
+    const sql = "delete from posts where post_id = ?";
+    connection.query(sql, [post], (err, result) => {
+        if (err) {
+            console.log(`Delete /post/${post} error`, err);
+            res.json({
+                error: "Something went wrong while deleting"
+            })
+        }
+        else res.json({
+            success: "Post was deleted"
+        });
+    });
+    
+});
+
+
+// delete the specified comment
+app.delete(endpoints.deleteComment, (req, res) => {
+    const comment_id = req.params.comment;
+    console.log(`Delete /comment/${comment_id}`);
+    console.log(req.params);
+    const sql = "delete from comments where comment_id = ?";
+    connection.query(sql, [comment_id], (err, result) => {
+        if (err) {
+            console.log(`Delete /comment/${comment_id} error`, err);
+            res.json({
+                error: "Something went wrong while deleting"
+            })
+        }
+        else res.json({
+            success: "Comment was deleted"
+        });
+    });
+    
+});
+
+
 // connect to the database and listen to the requests
 connectToDB()
     .then(() => app.listen(port, () => console.log(`Server started on port ${port}`)))

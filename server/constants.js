@@ -10,7 +10,9 @@ const endpoints = {
     postData: "/post/:board/:post",
     comment: "/comment/:post",
     reply: "/reply/:comment",
-    search: "/search/"
+    search: "/search/",
+    deletePost: "/post/:post",
+    deleteComment: "/comment/:comment"
 };
 
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { addCommentUrl, addPostUrl, addReplyUrl, boardUrl, mainUrl, commentsUrl, postUrl, searchUrl, adminUrl } from "./constants";
+import { addCommentUrl, addPostUrl, addReplyUrl, boardUrl, mainUrl, commentsUrl, postUrl, searchUrl, adminUrl, deleteCommentUrl, deletePostUrl } from "./constants";
 
 // admin authentication
 export const authenticate = (email, password) => {
@@ -61,6 +61,20 @@ export const addReply = (post_id, contents, date_added, reply_to) => {
 // search board
 export const getSearchResults = (board, query, page) => {
     return axios.get(searchUrl(board, query, page))
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
+// delete post
+export const deletePost = (post) => {
+    return axios.delete(deletePostUrl(post))
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
+
+// delete comment
+export const deleteComment = (comment) => {
+    return axios.delete(deleteCommentUrl(comment))
         .then(res => res.data)
         .catch(err => console.log(err));
 };
