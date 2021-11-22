@@ -14,6 +14,7 @@ const {
     addComment, 
     addReply
 } = require("./database");
+const authenticate = require("./admin");
 
 
 const port = process.env.PORT || 5000;
@@ -21,6 +22,33 @@ const port = process.env.PORT || 5000;
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+// admin authentication
+app.post(endpoints.admin, (req, res) => {
+    console.log("POST /admin");
+    const credentials = req.body;
+    try{
+        const success = authenticate(credentials);
+        if (success){
+            res.json({
+                success: "Authentication successful"
+            });
+        }
+        else{
+            res.json({
+                error: "Incorrect email or password"
+            });
+        }
+    }
+    catch(err){
+        console.log(err);
+        res.json({
+            error: "Something went wrong"
+        })
+    }
+    
+
+});
 
 // front page
 // show all the available boards

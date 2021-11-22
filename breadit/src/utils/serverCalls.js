@@ -1,5 +1,12 @@
 import axios from "axios";
-import { addCommentUrl, addPostUrl, addReplyUrl, boardUrl, mainUrl, commentsUrl, postUrl, searchUrl } from "./constants";
+import { addCommentUrl, addPostUrl, addReplyUrl, boardUrl, mainUrl, commentsUrl, postUrl, searchUrl, adminUrl } from "./constants";
+
+// admin authentication
+export const authenticate = (email, password) => {
+    return axios.post(adminUrl, {email, password})
+        .then(res => res.data)
+        .catch(err => console.log(err));
+};
 
 // get boards
 export const getBoards = () =>{

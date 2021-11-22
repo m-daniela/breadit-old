@@ -6,6 +6,7 @@
 @import "./comments.scss";
 @import "./board.scss";
 @import "./rce.scss";
+@import "./admin.scss";
 
 body{
   background-color: var(--bg_primary);
@@ -38,7 +39,7 @@ textarea{
 }
 
 h2{
-  margin-bottom: .5em;
+  margin: .5em 0;
 }
 
 button{

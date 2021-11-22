@@ -1,10 +1,12 @@
-import React, {createRef, useEffect} from 'react';
+import React, {createRef, useContext, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { customPost } from '../../utils/constants';
 import {useSelector} from "react-redux";
 import { getRelativeTime } from '../../utils/relativeTime';
 import ReactQuill from 'react-quill';
+import CloseRounded from '@material-ui/icons/CloseRounded';
 import 'react-quill/dist/quill.bubble.css';
+import { AdminContext } from '../../context/AdminContext';
 
 
 /**
@@ -16,6 +18,7 @@ import 'react-quill/dist/quill.bubble.css';
  * @returns a Link component, showing the post data
  */
 const PostPreview = ({data}) => {
+    const {isLogged} = useContext(AdminContext);
     const {board_id} = useSelector(state => state.board);
     const {post_id, title, description, date_created, board_name} = data;
 
@@ -30,6 +33,8 @@ const PostPreview = ({data}) => {
 
     return (
         <Link className="post-preview" to={customPost(board_id ?? board_name, post_id)}>
+            {isLogged && <CloseRounded className="delete-item"/>}
+
             <h2>{title}</h2>
             <ReactQuill className="preview-description"
                 value={description}

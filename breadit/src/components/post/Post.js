@@ -13,9 +13,12 @@ import Head from '../common/Head';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
+import { AdminContext } from '../../context/AdminContext';
+import CloseRounded from '@material-ui/icons/CloseRounded';
 
 
 const Post = () => {
+    const {isLogged} = useContext(AdminContext);
     const {addPost} = useContext(AddPostContext);
     const [comment, setComment] = useState("");
     const dispatch = useDispatch();
@@ -61,6 +64,8 @@ const Post = () => {
                         <>
                             <div className="post">
                                 <button onClick={history.goBack}>Go back</button>
+                                {isLogged && <CloseRounded className="delete-item"/>}
+
                                 {data.title ?
                                     <> 
                                         <div className="post-info">

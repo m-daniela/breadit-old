@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchComments } from '../../store/redux';
 import { getRelativeTime } from '../../utils/relativeTime';
@@ -6,6 +6,8 @@ import { addReply } from '../../utils/serverCalls';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
+import {AdminContext} from "../../context/AdminContext";
+import CloseRounded from '@material-ui/icons/CloseRounded';
 
 
 /**
@@ -15,6 +17,7 @@ import 'react-quill/dist/quill.bubble.css';
  * @param {*} data the comment data 
  */
 const Comment = ({data}) => {
+    const {isLogged} = useContext(AdminContext);
     const [open, setOpen] = useState(false);
     const {comment_id, contents, date_added, post_id, reply_to} = data;
     const dispatch = useDispatch();
@@ -36,6 +39,8 @@ const Comment = ({data}) => {
 
     return (
         <div className="comment" id={comment_id}>
+            {isLogged && <CloseRounded className="delete-item"/>}
+
             <span>
                 <span>#{comment_id} {reply_to ? <> replied to <a href={`#${reply_to}`}> #{reply_to}</a></> : <></>} - {getRelativeTime(date_added)} {">>>"} <a onClick={() => setOpen(!open)}>Reply</a> </span> 
             </span>

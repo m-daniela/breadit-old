@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { routes } from '../utils/constants';
 import BoardList from './common/BoardList';
 import Head from './common/Head';
 import ThemeToggle from './common/ThemeToggle';
@@ -17,6 +19,7 @@ const MainPage = () => {
                     <h1>Breadit</h1>
                     <p>the cookbook of the internet</p>
                     <BoardList/>
+                    <Link to={routes.admin}>Login as Administrator</Link>
                     {/* <ThemeToggle/> */}
                 </div>
             </div>

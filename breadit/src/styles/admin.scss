@@ -1,0 +1,27 @@
+
+#admin-form{
+    @include flex-column;
+    width: 70%;
+    max-width: 300px;
+    label{
+        margin-bottom: .5em;
+    }
+    input{
+        padding: 10px;
+        margin-bottom: .7em;
+    }
+    button{
+        width: 100%;
+        margin: 1em 0;
+    }
+}
+
+.delete-item{
+    align-self: flex-end;
+    margin-top: .3em;
+    margin-bottom: -0.7em;
+}
+
+.post-preview .delete-item{
+    margin-top: .5em;
+}

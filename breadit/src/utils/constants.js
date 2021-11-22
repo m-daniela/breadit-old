@@ -3,12 +3,14 @@ export const routes = {
     main: "/",
     board: "/:board/page/:page",
     post: "/:board/post/:post", 
-    search: "/search/"
+    search: "/search/",
+    admin: "/admin/"
 };
 
 
 export const port = 5000;
 export const mainUrl = `http://localhost:${port}/`;
+export const adminUrl = `${mainUrl}admin`;
 export const boardUrl = (board, page) => `${mainUrl}${board}/page/${page}`;
 export const commentsUrl = (board, post) => `${mainUrl}comments/${board}/${post}`;
 export const postUrl = (board, post) => `${mainUrl}post/${board}/${post}`;
