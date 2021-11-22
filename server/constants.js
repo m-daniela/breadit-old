@@ -1,9 +1,14 @@
+require('dotenv').config();
+
+// env
+
+const port = process.env.PORT || 5000;
+
 
 // endpoints
 
 const endpoints = {
     frontpage: "/",
-    admin: "/admin",
     board: "/:board/page/:page",
     comments: "/comments/:board/:post",
     post: "/:board/post",
@@ -11,11 +16,16 @@ const endpoints = {
     comment: "/comment/:post",
     reply: "/reply/:comment",
     search: "/search/",
-    deletePost: "/post/:post",
-    deleteComment: "/comment/:comment"
+    admin: "/admin",
+    addBoard: "/admin/board",
+    updateBoard: "/admin/board/:board",
+    deleteBoard: "/admin/board/:board",
+    deletePost: "/admin/post/:post",
+    deleteComment: "/admin/comment/:comment"
 };
 
 
 module.exports = {
+    port,
     endpoints
 };

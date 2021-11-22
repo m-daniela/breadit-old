@@ -12,6 +12,8 @@ const Admin = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
+    console.log(isLogged);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         authenticate(email, password)
@@ -33,8 +35,7 @@ const Admin = () => {
             <div className="main-wrapper">
                 <div className="main">
                     {
-                        isLogged 
-                            ? 
+                        isLogged ?
                             <>
                                 <span>You are logged in as Admin</span>
                                 <span onClick={logout}>Logout</span>
@@ -42,12 +43,13 @@ const Admin = () => {
                             </>
                             :
                             <form id="admin-form" onSubmit={handleSubmit} method="post">
-                                <span>{error}</span>
                                 <label>Email</label>
                                 <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} required/>
 
                                 <label>Password</label>
                                 <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} required/>
+
+                                <span>{error}</span>
 
                                 <button type="submit">Login as administrator</button>
                                 <Link to={routes.main}>Go back home</Link>

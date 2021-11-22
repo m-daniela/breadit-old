@@ -4,6 +4,7 @@ export const AdminContext = createContext();
 
 const AdminProvider = ({children}) => {
     const [isLogged, setLogged] = useState(localStorage.getItem("admin") ?? false);
+    console.log(localStorage.getItem("admin"), "------");
 
     const login = () => {
         setLogged(true);

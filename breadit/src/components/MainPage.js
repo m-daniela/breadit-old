@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { routes } from '../utils/constants';
 import BoardList from './common/BoardList';
 import Head from './common/Head';
 import ThemeToggle from './common/ThemeToggle';
+import {AdminContext} from "../context/AdminContext";
 
 
 /**
@@ -11,6 +12,7 @@ import ThemeToggle from './common/ThemeToggle';
  * Displays a welcome message and the available boards. 
  */
 const MainPage = () => {
+    const {isLogged} = useContext(AdminContext);
     return (
         <>
             <Head title={"Breadit"}/>
@@ -19,7 +21,7 @@ const MainPage = () => {
                     <h1>Breadit</h1>
                     <p>the cookbook of the internet</p>
                     <BoardList/>
-                    <Link to={routes.admin}>Login as Administrator</Link>
+                    <Link to={routes.admin}>{isLogged ? "To Admin page" : "Login as Admin"}</Link>
                     {/* <ThemeToggle/> */}
                 </div>
             </div>
