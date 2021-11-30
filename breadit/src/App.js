@@ -23,7 +23,7 @@ function App() {
             <AdminProvider>
                 <ThemeProvider>
                     <AddPostProvider>
-                        <div className="app container">
+                        <div className="app container row m-auto flex-column flex-lg-row justify-content-around">
                             <Switch>
                                 <Route exact path={routes.main}>
                                     <MainPage />

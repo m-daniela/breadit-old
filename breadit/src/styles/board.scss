@@ -1,24 +1,5 @@
 
 .board{
     padding: 1em;
-    // width: 31em;
-
-}
-
-.paginated-preview{
-    padding-bottom: 2em;
-    // width: 30em;
-    .buttons{
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        a{
-            text-decoration: none;
-        }
-        & > *{
-            align-self: center;
-        }
-        
-    }
 
 }

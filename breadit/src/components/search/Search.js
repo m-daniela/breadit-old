@@ -31,8 +31,8 @@ const Search = () => {
     return (
         <>
             <Head title={`Search ${query}`}/>
-            <div className="board-wrapper">
-                <div className="board">
+            <div className="board-wrapper col-12 col-lg-6">
+                <div className="board px-0 col-12">
                     {addPost 
                         ? 
                         <AddPost/>
@@ -41,8 +41,9 @@ const Search = () => {
                     }
                     
                 </div>
-                <Side board={board}/>
             </div>
+            <Side board={board}/>
+
         </>
     );
 };

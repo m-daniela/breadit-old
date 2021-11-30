@@ -17,7 +17,7 @@ const PostSkeleton = () => {
     return (
         <>
             {showLoader ? 
-                <div className="post-preview skeleton">
+                <div className="post-preview skeleton col-12">
             
                     <h2/>
                     <div className="preview-description"/>
@@ -25,7 +25,7 @@ const PostSkeleton = () => {
             
                 </div>
                 :
-                <div className="skeleton-error">
+                <div className="skeleton-error col-12">
                     No data could be found, please try again later. 
                 </div>
             }

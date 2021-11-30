@@ -67,21 +67,21 @@ const Post = () => {
     return (
         <>
             <Head title={data.title} />
-            <div className="board-wrapper">
-                <div className="post-wrapper">
+            <div className="board-wrapper col-12 col-lg-6">
+                <div className="post-wrapper px-0 col-12 my-3">
                     {addPost 
                         ?
                         <AddPost/>
                         :
                         <>
-                            <div className="post">
-                                <button onClick={history.goBack}>Go back</button>
-                                {isLogged && <CloseRounded className="delete-item" onClick={handleRemovePost}/>}
+                            
 
-                                {data.title ?
-                                    <> 
-                                        <div className="post-info">
-                                            <h1>{data.title}</h1>
+                            {data.title ?
+                                <>
+                                    <div className="post row p-4 my-3">
+                                        <button onClick={history.goBack}>Go back</button>
+                                        <div className="post-info ">
+                                            <h1 className="d-flex "><span className="col-11 px-0">{data.title}</span> {isLogged && <CloseRounded className="delete-item align-self-center" onClick={handleRemovePost}/>}</h1>
                                             <div className="post-date">{getRelativeTime(data.date_created)}</div>
                                             <ReactQuill className="post-description"
                                                 value={data.description}
@@ -93,17 +93,20 @@ const Post = () => {
                                             <ReactQuill theme="snow" value={comment} onChange={setComment} />
                                             <button>Add comment</button>
                                         </form>
-                                    </>
-                                    :
-                                    <PostSkeleton />
-                                }
-                                <CommentSection currentPost={post}/>
-                            </div>
+                                        <CommentSection currentPost={post}/>
+
+                                    </div>
+                                </>
+                                :
+                                <PostSkeleton />
+                            }
+                            
                         </>}
                 </div>
-                <Side board={board}/>
+                
 
             </div>
+            <Side board={board}/>
         </>
     );
 };

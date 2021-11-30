@@ -44,7 +44,7 @@ const PaginatedPreview = () => {
     };
 
     return (
-        <div className="paginated-preview">
+        <div className="paginated-preview row">
             {posts.length !== 0 ? 
                 posts.map(elem => <PostPreview key={elem.post_id} data={elem} />)
                 :

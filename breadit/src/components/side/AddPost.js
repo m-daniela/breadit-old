@@ -51,14 +51,14 @@ const AddPost = () => {
     return (
         <>
             <Head title={`Add new post on ${name}`}/>
-            <div className="add-post">
+            <div className="add-post row mx-auto p-4 my-3">
                 <h2>Add a new post</h2>
                 <form onSubmit={createPost}>
                     <label>Title</label>
                     <input type="text" onChange={e => setTitle(e.target.value)} value={title} required/>
                     <label>Your post</label>
                     <ReactQuill theme="snow" value={contents} onChange={setContents} />
-                    <div className="buttons">
+                    <div className="buttons ">
                         <button onClick={closeAdd}>Go back</button>
                         <button type="submit">Add new post</button>
                     </div>

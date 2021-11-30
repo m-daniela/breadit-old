@@ -46,16 +46,14 @@ const PostPreview = ({data}) => {
 
 
     return (
-        <Link className="post-preview" to={customPost(board_id ?? board_name, post_id)}>
-            {isLogged && <CloseRounded className="delete-item" onClick={handleRemovePost}/>}
-
-            <h2>{title}</h2>
+        <Link className="post-preview col-12 p-4 my-3" to={customPost(board_id ?? board_name, post_id)}>
+            <h2 className="d-flex"><span className="col-11 px-0">{title}</span>{isLogged && <CloseRounded className="delete-item align-self-center " onClick={handleRemovePost}/>}</h2>
             <ReactQuill className="preview-description"
                 value={description}
                 readOnly={true}
                 theme={"bubble"}
             />
-            <div className="preview-date">{getRelativeTime(date_created)}</div>
+            <div className="preview-date align-self-end">{getRelativeTime(date_created)}</div>
         </Link>
     );
 };

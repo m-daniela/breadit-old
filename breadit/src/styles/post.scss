@@ -1,71 +1,7 @@
 
 
-.post-wrapper{
-    padding: 1em;
-}
-
 .post-preview, .post, .add-post, .add-post form{
     @include flex-column;
-
-}
-
-.post-preview, .post, .skeleton-error{
-    text-align: justify;
-    // width: 100%;
-    width: 500px;
-    // display: inline-block;
-    padding: 0 2.5em 1em 2.5em;
-    margin: 1.5em 0;
-}
-
-
-.post-preview{
-    max-height: 350px;
-    border-radius: var(--corners);
-    text-decoration: none;
-    &:not(.skeleton) .preview-description{
-        position: relative;
-        overflow: hidden;
-        height: 100%;
-        div.ql-container.ql-bubble.ql-disabled div.ql-editor{
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        &::after{
-           content: "";
-           position: absolute;
-           top: 5em;
-           left: 0;
-           bottom: 0;
-           right: 0;
-           background: linear-gradient(to top, var(--bg_secondary) 0%, rgba(0, 0, 0, 0)) 3%;
-       } 
-    }
-    .preview-date{
-        padding: .5em 0;
-        align-self: flex-end;
-    }
-}
-
-.post{
-    border-radius: var(--corners);
-    & > button{
-        margin-top: 2em;
-    }
-    .post-info{
-        h1{
-            margin-bottom: 0;
-        }
-        .post-description{
-            height: 100%;
-        }
-        .post-date{
-            padding: 0 0 .7em 0;
-            font-size: .9em;
-
-        }
-    }
-    
 }
 
 .skeleton {
@@ -108,38 +44,34 @@
 }
 
 .skeleton-error{
-    @include centered-container;
     border-radius: var(--corners);
     padding: 2.5em;
 }
 
-.post .skeleton-error, .post .post-preview.skeleton{
-    padding: 2.5em 0;
-}
 
-.add-post{
-    width: 500px;
-    padding: 2.5em;
-    margin: 1.5em 0;
-    form{
-        margin: 1em 0;
-    }
-    form .buttons{
-        @include flex-row;
-        justify-content: flex-end;
-    }
-    label{
-        margin-bottom: .5em;
-    }
-    input{
-        margin-bottom: 1.5em;
-    }
-    button{
-        margin: 2em 0 0 1.5em;
-        width: fit-content;
-        &[type="submit"]{
-            filter: invert(100%);
-        }
-    }
-}
+
+// .add-post{
+//     width: 500px;
+//     padding: 2.5em;
+//     form{
+//         margin: 1em 0;
+//     }
+//     form .buttons{
+//         @include flex-row;
+//         justify-content: flex-end;
+//     }
+//     label{
+//         margin-bottom: .5em;
+//     }
+//     input{
+//         margin-bottom: 1.5em;
+//     }
+//     button{
+//         margin: 2em 0 0 1.5em;
+//         width: fit-content;
+//         &[type="submit"]{
+//             filter: invert(100%);
+//         }
+//     }
+// }
 
