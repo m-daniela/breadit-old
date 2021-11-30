@@ -8,11 +8,11 @@ import { customBoard } from '../../utils/constants';
  * Shows the list of available boards, saved in the 
  * cached list
  */
-const BoardList = () => {
+const BoardList = ({addons}) => {
     const boards = useCachedData();
 
     return (
-        <div className="boards">
+        <div className={`boards py-4 ${addons}`}>
             {boards.map(elem => <Link key={elem.board_id} to={customBoard(elem.board_id)}>{elem.name}</Link>)}
         </div>
     );

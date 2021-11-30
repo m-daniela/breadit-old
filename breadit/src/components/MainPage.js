@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { routes } from '../utils/constants';
 import BoardList from './common/BoardList';
 import Head from './common/Head';
-import ThemeToggle from './common/ThemeToggle';
 import {AdminContext} from "../context/AdminContext";
 
+import Col from "react-bootstrap/Col";
 
 /**
  * Main Page
@@ -16,13 +16,12 @@ const MainPage = () => {
     return (
         <>
             <Head title={"Breadit"}/>
-            <div className="main-wrapper">
-                <div className="main">
+            <div className="wrapper container d-flex align-items-center justify-content-center vh-100">
+                <div className="landing row flex-column justify-content-center align-items-center m-auto py-5">
                     <h1>Breadit</h1>
                     <p>the cookbook of the internet</p>
-                    <BoardList/>
+                    <BoardList addons="col-6"/>
                     <Link to={routes.admin}>{isLogged ? "To Admin page" : "Login as Admin"}</Link>
-                    {/* <ThemeToggle/> */}
                 </div>
             </div>
         </>

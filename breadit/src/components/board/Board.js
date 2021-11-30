@@ -35,6 +35,7 @@ const Board = () => {
     return (
         <>
             <Head title={name}/>
+            
             <div className="board-wrapper">
                 <div className="board">
                     {addPost 

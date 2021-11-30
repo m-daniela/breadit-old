@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import Navbar from "react-bootstrap/Navbar";
+import InputGroup from 'react-bootstrap/InputGroup';
+import FormControl from "react-bootstrap/FormControl";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
 import { Link, useHistory } from 'react-router-dom';
 import { customBoard, customSearch, routes } from '../../utils/constants';
 import BoardList from '../common/BoardList';
 import ThemeToggle from '../common/ThemeToggle';
 import CurrentBoard from './CurrentBoard';
-
-import MenuRoundedIcon from '@material-ui/icons/MenuRounded';
-import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 
 import breadit_logo50 from "../../breadit_logo50.svg";
 
@@ -21,7 +24,6 @@ import breadit_logo50 from "../../breadit_logo50.svg";
 const Side = ({board}) => {
     const [delay, setDelay] = useState(0);
     const [searchQuery, setSearchQuery] = useState("");
-    const [open, setOpen] = useState(true);
     const [searchAdvancedQuery, setSearchAdvancedQuery] = useState("");
     const history = useHistory();
 
@@ -49,16 +51,6 @@ const Side = ({board}) => {
         
     }, [searchAdvancedQuery]);
 
-    useEffect(() => {
-        if (!open){
-            document.querySelector("body").style.overflow = "hidden";
-        }
-        else{
-            document.querySelector("body").style.overflow = "visible";
-        }
-        
-    }, [open]);
-
     const searchOnBoard = (e) =>{
         e?.preventDefault();
         history.push({
@@ -76,47 +68,53 @@ const Side = ({board}) => {
     };
     
 
-    return (
-        <>
-            <div className="header-mobile">
-                <Link to={routes.main}>breadit</Link>
-                <Link to={customBoard(board)}>{board}</Link>
-                <span onClick={(e) => setOpen(!open)}>{open ? <MenuRoundedIcon/> : <CloseRoundedIcon />}</span>
-            </div>
-            <div className={`${open ? "" : "overlay"}`} onClick={() => setOpen(!open)}>
-                <div className={`side ${open ? "" : "mobile"}`}>
-                    <Link id="logo" to={routes.main}>
-                        <img src={breadit_logo50}/>
-                        Breadit
-                    </Link>
-                
-                    {board ? 
-                        <>
-                            <CurrentBoard board={board}/>
-                            <form onSubmit={e => searchOnBoard(e)}>
-                                <label>Search in this board</label>
-                                <div className="query">
-                                    <input id="search-board" type="text" onChange={(e) => setSearchQuery(e.target.value)} value={searchQuery}/>
-                                    <button id="search-board-go" type="submit">Go</button>
-                                </div>
-                            </form>
-                        </> : <></>}
+    return(
+        <Navbar expand="lg" sticky="top" variant="dark" className="side flex-lg-column pt-4 align-items-start w-100">
+            <Navbar.Brand id="logo" href={routes.main} className="px-3" >
+                <img src={breadit_logo50}/>
+                Breadit
+            </Navbar.Brand>
             
-                    <form onSubmit={e => searchEverywhere(e)}>
-                        <label>Search everywhere</label>
-                        <div className="query">
-                            <input id="search-everywhere" type="text" onChange={(e) => setSearchAdvancedQuery(e.target.value)} value={searchAdvancedQuery}/>
-                            <button id="search-everywhere-go" type="submit">Go</button>
-                        </div>
-                
 
-                    </form>
-                    <BoardList/>
-                    <ThemeToggle/>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav" className="flex-column align-items-start px-3">
+                {board &&
+                    <>
+                        <CurrentBoard board={board}/>
+                        <Form className="w-100 mt-3" onSubmit={e => searchOnBoard(e)}>
+                            <Form.Label>Search in this board</Form.Label>
+                            <InputGroup >
+                                <Form.Control
+                                    id="search-board"
+                                    type="text"
+                                    aria-label="Search in this board"
+                                    onChange={(e) => setSearchQuery(e.target.value)} 
+                                    value={searchQuery}
+                                />
+                                <Button id="search-board-go" type="submit">Go</Button>
+                            </InputGroup>
+                        </Form>
+                    </> }
+            
+                <Form className="w-100 mt-3" onSubmit={e => searchEverywhere(e)}>
+                    <Form.Label>Search everywhere</Form.Label>
+                    <InputGroup>
+                        <Form.Control
+                            id="search-everywhere"
+                            type="text"
+                            aria-label="Search in this board"
+                            aria-describedby="basic-addon2"
+                            onChange={(e) => setSearchAdvancedQuery(e.target.value)}
+                            value={searchAdvancedQuery}
+                        />
+                        <Button id="search-everywhere-go" type="submit">Go</Button>
+                    </InputGroup>
+                </Form>
+                <BoardList addons="justify-content-start"/>
+                <ThemeToggle/>
 
-                </div>
-            </div>
-        </>
+            </Navbar.Collapse>
+        </Navbar>
     );
 };
 

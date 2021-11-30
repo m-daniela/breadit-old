@@ -1,6 +1,6 @@
 
 @import "./general.scss";
-@import "./mainPage.scss";
+@import "./landing.scss";
 @import "./side.scss";
 @import "./post.scss";
 @import "./comments.scss";
@@ -17,7 +17,7 @@ html, body, .App{
   height: 100%;
 }
 
-body, a, input, button, textarea, .App{
+body, a, input, button, textarea, .app{
   color: var(--font_color);
   border-radius: var(--corners);
   // font-size: 16px;
@@ -50,7 +50,7 @@ button{
   }
 }
 
-.main, .post, .side, .header-mobile, .post-preview, .add-post, .skeleton-error {
+.main-page, .landing, .post, .side, .header-mobile, .post-preview, .add-post, .skeleton-error {
   background-color: var(--bg_secondary);
 }
 
