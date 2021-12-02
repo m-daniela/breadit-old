@@ -23,7 +23,7 @@ const CommentSection = ({currentPost}) => {
     }, [currentPost, board_id]);
     
     return (
-        <div className="comment-section">
+        <div className="comment-section p-0">
             {comments.map(elem => <Comment key={elem.comment_id} data={elem}/>)}
         </div>
     );

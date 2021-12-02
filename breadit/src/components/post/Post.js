@@ -15,7 +15,7 @@ import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
 import { AdminContext } from '../../context/AdminContext';
 import CloseRounded from '@material-ui/icons/CloseRounded';
-
+import Button from "react-bootstrap/Button";
 
 const Post = () => {
     const {isLogged} = useContext(AdminContext);
@@ -73,35 +73,36 @@ const Post = () => {
                         ?
                         <AddPost/>
                         :
-                        <>
-                            
-
+                        <div className="post-display row">
                             {data.title ?
-                                <>
-                                    <div className="post row p-4 my-3">
-                                        <button onClick={history.goBack}>Go back</button>
-                                        <div className="post-info ">
-                                            <h1 className="d-flex "><span className="col-11 px-0">{data.title}</span> {isLogged && <CloseRounded className="delete-item align-self-center" onClick={handleRemovePost}/>}</h1>
-                                            <div className="post-date">{getRelativeTime(data.date_created)}</div>
-                                            <ReactQuill className="post-description"
-                                                value={data.description}
-                                                readOnly={true}
-                                                theme={"bubble"}
-                                            />
-                                        </div>
-                                        <form className="add-comment" onSubmit={writeComment}>
-                                            <ReactQuill theme="snow" value={comment} onChange={setComment} />
-                                            <button>Add comment</button>
-                                        </form>
-                                        <CommentSection currentPost={post}/>
-
+                                <div className="post d-flex flex-column py-4 px-5 my-3 col-12 ">
+                                    <Button onClick={history.goBack} className="btn-custom">Go back</Button>
+                                    <div className="post-info p-0">
+                                        <h1 className="d-flex ">
+                                            <span className="col-11 px-0">{data.title}</span> 
+                                            {isLogged && <CloseRounded className="delete-item align-self-center" onClick={handleRemovePost}/>}
+                                        </h1>
+                                        <div className="post-date">{getRelativeTime(data.date_created)}</div>
+                                        <ReactQuill className="post-description"
+                                            value={data.description}
+                                            readOnly={true}
+                                            theme={"bubble"}
+                                        />
                                     </div>
-                                </>
+                                    <form className="add-comment d-flex flex-column py-4" onSubmit={writeComment}>
+                                        <div>
+                                            <ReactQuill theme="snow" value={comment} onChange={setComment} />
+                                        </div>
+                                        <Button className="btn-custom align-self-end mt-4" onClick={writeComment}>Add comment</Button>
+                                    </form>
+                                    <CommentSection currentPost={post}/>
+
+                                </div>
                                 :
                                 <PostSkeleton />
                             }
                             
-                        </>}
+                        </div>}
                 </div>
                 
 

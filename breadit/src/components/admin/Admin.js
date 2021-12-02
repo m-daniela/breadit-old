@@ -4,6 +4,9 @@ import { AdminContext } from '../../context/AdminContext';
 import { routes } from '../../utils/constants';
 import { authenticate } from '../../utils/serverCalls';
 import Head from '../common/Head';
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
 
 const Admin = () => {
     const {isLogged, login, logout} = useContext(AdminContext);
@@ -11,8 +14,6 @@ const Admin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-
-    console.log(isLogged);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -31,29 +32,32 @@ const Admin = () => {
 
     return (
         <>
-            <Head title={"Log in as admin"}/>
-            <div className="main-wrapper">
-                <div className="main">
+            <Head title={"Log in as Administrator"}/>
+            <div className="wrapper container d-flex align-items-center justify-content-center vh-100">
+                <div className="landing row flex-column justify-content-center align-items-center m-auto py-5">
                     {
                         isLogged ?
                             <>
-                                <span>You are logged in as Admin</span>
+                                <h2>Admin page</h2>
+                                <span></span>
                                 <span onClick={logout}>Logout</span>
                                 <Link to={routes.main}>Go back home</Link>
                             </>
                             :
-                            <form id="admin-form" onSubmit={handleSubmit} method="post">
-                                <label>Email</label>
-                                <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} required/>
-
-                                <label>Password</label>
-                                <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} required/>
-
-                                <span>{error}</span>
-
-                                <button type="submit">Login as administrator</button>
-                                <Link to={routes.main}>Go back home</Link>
-                            </form> 
+                            <Form className="d-flex flex-column col-8 col-md-6" onSubmit={handleSubmit} method="post">
+                                <h2 className="text-center">Log in</h2>
+                                <Form.Label >
+                                    Email
+                                </Form.Label>
+                                <Form.Control type="email" name="email" className="input-custom" value={email} onChange={e => setEmail(e.target.value)} required/>
+                                <Form.Label className="mt-3">
+                                    Password
+                                </Form.Label>
+                                <Form.Control type="password" name="password" className="input-custom" value={password} onChange={e => setPassword(e.target.value)} required />
+                                <span className="mt-3">{error}</span>
+                                <Button type="submit" className="btn-custom mt-3">Login as Administrator</Button>
+                                <Link to={routes.main} className="mt-2">Go back home</Link>
+                            </Form>
                     }
                     
                 </div>

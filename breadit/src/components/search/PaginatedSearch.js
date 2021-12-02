@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { fetchPosts, nextPage, previousPage, selectPage } from '../../store/redux';
 import { customBoard, customSearch, routes, searchUrl } from '../../utils/constants';
 import PostPreview from '../board/PostPreview';
+import Buttons from '../common/Buttons';
 import PostSkeleton from '../common/PostSkeleton';
 
 
@@ -59,11 +60,7 @@ const PaginatedSearch = ({query}) => {
                 :
                 <PostSkeleton />
             }
-            <div className="buttons">
-                <button onClick={clickPreviousPage}>Previous</button>
-                <span>{page}</span>
-                <button onClick={clickNextPage}>Next</button>
-            </div>
+            <Buttons page={page} previousPage={clickPreviousPage} nextPage={clickNextPage}/>
         </div>
     );
 };

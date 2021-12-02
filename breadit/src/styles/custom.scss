@@ -1,0 +1,97 @@
+.btn-custom { 
+    color: var(--font_color); 
+    background-color: var(--bg_input); 
+    border-color: var(--bg_input); 
+  } 
+   
+  .btn-custom:hover, 
+  .btn-custom:focus, 
+  .btn-custom:active, 
+  .btn-custom.active, 
+  .open .dropdown-toggle.btn-custom { 
+    color: var(--font_color); 
+    background-color: var(--bg_input) !important; 
+    border-color: var(--bg_input) !important; 
+} 
+
+
+  .btn-custom:active, 
+  .btn-custom.active, 
+  .open .dropdown-toggle.btn-custom { 
+    background-image: none; 
+  } 
+   
+  .btn-custom.disabled, 
+  .btn-custom[disabled], 
+  fieldset[disabled] .btn-custom, 
+  .btn-custom.disabled:hover, 
+  .btn-custom[disabled]:hover, 
+  fieldset[disabled] .btn-custom:hover, 
+  .btn-custom.disabled:focus, 
+  .btn-custom[disabled]:focus, 
+  fieldset[disabled] .btn-custom:focus, 
+  .btn-custom.disabled:active, 
+  .btn-custom[disabled]:active, 
+  fieldset[disabled] .btn-custom:active, 
+  .btn-custom.disabled.active, 
+  .btn-custom[disabled].active, 
+  fieldset[disabled] .btn-custom.active { 
+    background-color: var(--bg_input); 
+    border-color: var(--bg_input); 
+  } 
+   
+  .btn-custom .badge { 
+    color: var(--bg_input); 
+    background-color: var(--font_color); 
+
+  }
+
+// input
+
+.input-custom { 
+    color: var(--font_color); 
+    background-color: var(--bg_input); 
+    border-color: var(--bg_input); 
+} 
+   
+  .input-custom:hover, 
+  .input-custom:focus, 
+  .input-custom:active, 
+  .input-custom.active, 
+  .open .dropdown-toggle.input-custom { 
+    color: var(--font_color); 
+    background-color: var(--bg_input) !important; 
+    border-color: var(--bg_input) !important; 
+} 
+
+
+  .btn-custom:active, 
+  .input-custom.active, 
+  .open .dropdown-toggle.input-custom { 
+    background-image: none; 
+  } 
+   
+  .input-custom.disabled, 
+  .input-custom[disabled], 
+  fieldset[disabled] .input-custom, 
+  .input-custom.disabled:hover, 
+  .input-custom[disabled]:hover, 
+  fieldset[disabled] .input-custom:hover, 
+  .input-custom.disabled:focus, 
+  .input-custom[disabled]:focus, 
+  fieldset[disabled] .input-custom:focus, 
+  .input-custom.disabled:active, 
+  .input-custom[disabled]:active, 
+  fieldset[disabled] .input-custom:active, 
+  .input-custom.disabled.active, 
+  .input-custom[disabled].active, 
+  fieldset[disabled] .input-custom.active { 
+    background-color: var(--bg_input); 
+    border-color: var(--bg_input); 
+  } 
+   
+  .input-custom .badge { 
+    color: var(--bg_input); 
+    background-color: var(--font_color); 
+
+  }

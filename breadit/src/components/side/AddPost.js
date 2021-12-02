@@ -9,8 +9,8 @@ import Head from '../common/Head';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-// import {Editor, EditorState} from 'draft-js';
-// import 'draft-js/dist/Draft.css';
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 
 
@@ -49,22 +49,23 @@ const AddPost = () => {
     const closeAdd = () => showAddOverlay();
 
     return (
-        <>
+        <div className="add-post-wrapper row">
             <Head title={`Add new post on ${name}`}/>
             <div className="add-post row mx-auto p-4 my-3">
                 <h2>Add a new post</h2>
-                <form onSubmit={createPost}>
-                    <label>Title</label>
-                    <input type="text" onChange={e => setTitle(e.target.value)} value={title} required/>
-                    <label>Your post</label>
+                <Form onSubmit={createPost}>
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control type="text" className="input-custom" onChange={e => setTitle(e.target.value)} value={title} required/>
+                    <Form.Label className="mt-3">Your post</Form.Label>
+
                     <ReactQuill theme="snow" value={contents} onChange={setContents} />
-                    <div className="buttons ">
-                        <button onClick={closeAdd}>Go back</button>
-                        <button type="submit">Add new post</button>
+                    <div className="buttons d-flex justify-content-end mt-3">
+                        <Button onClick={closeAdd} className="btn-custom">Go back</Button>
+                        <Button type="submit" className="btn-custom">Add new post</Button>
                     </div>
-                </form>
+                </Form>
             </div>
-        </>
+        </div>
     );
 };
 

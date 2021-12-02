@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Navbar from "react-bootstrap/Navbar";
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from "react-bootstrap/FormControl";
@@ -12,6 +12,7 @@ import ThemeToggle from '../common/ThemeToggle';
 import CurrentBoard from './CurrentBoard';
 
 import breadit_logo50 from "../../breadit_logo50.svg";
+import { ThemeContext } from '../../context/ThemeProvider';
 
 
 /**
@@ -22,6 +23,7 @@ import breadit_logo50 from "../../breadit_logo50.svg";
  * @param {number} board id of the selected board
  */
 const Side = ({board}) => {
+    const {theme} = useContext(ThemeContext); 
     const [delay, setDelay] = useState(0);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchAdvancedQuery, setSearchAdvancedQuery] = useState("");
@@ -69,15 +71,15 @@ const Side = ({board}) => {
     
 
     return(
-        <Navbar expand="lg" sticky="top" variant="dark" className="side flex-lg-column pt-4 align-items-start w-100">
-            <Navbar.Brand id="logo" href={routes.main} className="px-3" >
+        <Navbar expand="lg" sticky="top" variant={theme} className="side flex-lg-column col-lg-4 align-items-start w-100">
+            <Navbar.Brand id="logo" href={routes.main} className="px-3 pt-lg-3" >
                 <img src={breadit_logo50}/>
                 Breadit
             </Navbar.Brand>
-            
 
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav" className="flex-column align-items-start px-3">
+            <Navbar.Toggle aria-controls="basic-navbar-nav" id="nav-toggle"/>
+            <div className="col-12 col-lg flex-grow-0"></div>
+            <Navbar.Collapse id="basic-navbar-nav" className="flex-column align-items-start px-3 col-sm-6 col-lg-12 ">
                 {board &&
                     <>
                         <CurrentBoard board={board}/>
@@ -90,8 +92,9 @@ const Side = ({board}) => {
                                     aria-label="Search in this board"
                                     onChange={(e) => setSearchQuery(e.target.value)} 
                                     value={searchQuery}
+                                    className="input-custom"
                                 />
-                                <Button id="search-board-go" type="submit">Go</Button>
+                                <Button id="search-board-go" className="btn-custom" type="submit">Go</Button>
                             </InputGroup>
                         </Form>
                     </> }
@@ -106,8 +109,9 @@ const Side = ({board}) => {
                             aria-describedby="basic-addon2"
                             onChange={(e) => setSearchAdvancedQuery(e.target.value)}
                             value={searchAdvancedQuery}
+                            className="input-custom"
                         />
-                        <Button id="search-everywhere-go" type="submit">Go</Button>
+                        <Button id="search-everywhere-go" className="btn-custom" type="submit">Go</Button>
                     </InputGroup>
                 </Form>
                 <BoardList addons="justify-content-start"/>

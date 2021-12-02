@@ -6,6 +6,7 @@ import { useCachedData } from '../../cache/useCachedData';
 import { AddPostContext } from '../../context/AddPostProvider';
 import { selectBoard } from '../../store/redux';
 import { customBoard } from '../../utils/constants';
+import Button from "react-bootstrap/Button";
 
 /**
  * Current Board
@@ -42,7 +43,7 @@ const CurrentBoard = ({board}) => {
         <>
             <Link to={customBoard(board)}><h2>{boardData?.name}</h2></Link>
             <div>{boardData?.description}</div>
-            <button id="add-post" onClick={addPost}>Add post</button>
+            <Button id="add-post" className="btn-custom mt-3" onClick={addPost}>Add post</Button>
         </>
     );
 };

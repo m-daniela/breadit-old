@@ -1,14 +1,10 @@
 
 .add-comment{
-    @include flex-column;
-    padding: 1em 0 2em 0;
     border-bottom: 1px solid var(--bg_input);
     textarea{
         margin-top: 1em;
     }
     button{
-        align-self: flex-end;
-        margin-top: 2em;
         filter: invert(100%);
     }
 }
@@ -20,14 +16,9 @@
     }
 }
 .comment{
-    @include flex-column;
-    // border-left: 2px solid var(--bg_input);
-    padding-left: 1.5em;
     padding-top: .5em;
     span{
         font-size: .9em;
-        // display: flex;
-        // justify-content: space-between;
     }
     .ql_editor{
         padding-top: 0;
@@ -39,16 +30,6 @@
             filter: invert(100%);
         }
     }
-
-    form{
-        @include flex-column;
-        margin-top: 1em;
-        .buttons{
-            @include flex-row;
-            justify-content: flex-end;
-        }
-    }
-    
     &:target{
         background-color: var(--highglight_comment);
     }

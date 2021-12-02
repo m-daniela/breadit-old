@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { fetchPosts, nextPage, previousPage, selectPage } from '../../store/redux';
 import { customBoard } from '../../utils/constants';
+import Buttons from '../common/Buttons';
 import PostSkeleton from '../common/PostSkeleton';
 import PostPreview from './PostPreview';
 
@@ -50,11 +51,7 @@ const PaginatedPreview = () => {
                 :
                 <PostSkeleton />
             }
-            <div className="buttons">
-                <button onClick={clickPreviousPage}>Previous</button>
-                <span>{page}</span>
-                <button onClick={clickNextPage}>Next</button>
-            </div>
+            <Buttons page={page} previousPage={clickPreviousPage} nextPage={clickNextPage}/>
         </div>
     );
 };

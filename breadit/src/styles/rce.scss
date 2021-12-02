@@ -4,13 +4,12 @@
 }
 
 .quill{
-    display: unset !important;
     min-height: 0;
     flex: 1 1 auto;
     font-size: 16px;
+    position: relative;
 
     .ql-toolbar.ql-snow{
-        // display: block;
         border: 1px solid var(--bg_input);
         border-bottom: 1px solid var(--bg_primary);
         background-color: var(--bg_input);
@@ -35,13 +34,23 @@
     }
     .ql-container{
         font-size: 1em;
+        box-sizing: content-box;
+        height: fit-content;
         .ql-editor[contenteditable="false"]{
             padding-left: 0;
             padding-right: 0;
-            // padding-top: 0;
+            padding-top: 0;
             font-family: var(--font_family);
+        }
+        .ql-editor[contenteditable="true"]{
+            box-sizing: content-box;
         }
     }
 
     
+}
+
+.post form{
+    box-sizing: content-box;
+
 }

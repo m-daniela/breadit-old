@@ -8,7 +8,7 @@ import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
 import {AdminContext} from "../../context/AdminContext";
 import CloseRounded from '@material-ui/icons/CloseRounded';
-
+import Button from "react-bootstrap/Button";
 
 /**
  * Comment
@@ -49,31 +49,33 @@ const Comment = ({data}) => {
 
     return (
         <div className="comment" id={comment_id}>
-            {isLogged && <CloseRounded className="delete-item" onClick={handleRemoveComment}/>}
 
             <span>
-                <span>#{comment_id} {reply_to ? <> replied to <a href={`#${reply_to}`}> #{reply_to}</a></> : <></>} - {getRelativeTime(date_added)} {">>>"} <a onClick={() => setOpen(!open)}>Reply</a> </span> 
+                <span className="d-flex">
+                    <span className="col-11 px-0">
+                        #{comment_id} 
+                        {reply_to && <> replied to <a href={`#${reply_to}`}> #{reply_to}</a></> } - {getRelativeTime(date_added)} {">>> "} 
+                        <a onClick={() => setOpen(!open)}>Reply</a>
+                    </span>
+                    {isLogged && <CloseRounded className="delete-item delete-item align-self-center" onClick={handleRemoveComment}/>}
+                </span> 
             </span>
             <ReactQuill 
                 value={contents}
                 readOnly={true}
                 theme={"bubble"}
+                className="comment-display"
             />
-            {open 
-                ?
-                <form onSubmit={writeReply}>
+            {open &&
+                <form onSubmit={writeReply} className="mt-2" >
                     <ReactQuill theme="snow" value={reply} onChange={setReply}/>
                     {/* <textarea onChange={e => setReply(e.target.value)} value={reply} required/> */}
-                    <div className="buttons">
-                        <button onClick={() => setOpen(!open)}>Close</button>
-                        <button type="submit">Add comment</button>
+                    <div className="buttons d-flex justify-content-end">
+                        <Button className="btn-custom" onClick={() => setOpen(!open)}>Close</Button>
+                        <Button className="btn-custom" type="submit">Add comment</Button>
                     </div>
                     
                 </form>
-                :
-                // <a onClick={() => setOpen(!open)}>Reply</a>
-                <></>
-                // <button onClick={() => setOpen(!open)}>Reply</button>
             }
         </div>
     );

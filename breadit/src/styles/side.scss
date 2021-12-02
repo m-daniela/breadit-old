@@ -1,6 +1,18 @@
 
+#logo{
+    color: var(--font_color);
+}
+
+#nav-toggle{
+    border: none;
+    span{
+        color: var(--font_color);
+    }
+
+}
+
 .side{
-    max-width: 20em;
+    height: 100vh;
     h2, h1 {
         padding-top: .5em;
         margin-bottom: .2em;
@@ -8,5 +20,15 @@
     }
     h2{
         margin-top: .2em;
+    }
+    .input-group{
+        button{
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: 1px solid var(--highglight_comment);
+        }
+    }
+    .boards a{
+        text-align: left;
     }
 }
