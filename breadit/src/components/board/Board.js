@@ -37,7 +37,7 @@ const Board = () => {
             <Head title={name}/>
             
             <div className="board-wrapper col-12 col-lg-6">
-                <div className="board px-0 col-12">
+                <div className="board px-sm-0 col-12">
                     {addPost 
                         ? 
                         <AddPost/>

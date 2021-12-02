@@ -8,7 +8,7 @@ import Brightness3RoundedIcon from '@material-ui/icons/Brightness3Rounded';
 const ThemeToggle = () => {
     const {theme, toggleTheme} = useContext(ThemeContext);
     return (
-        <span className="theme-toggle" onClick={toggleTheme}>{theme === "dark" ? <Brightness3RoundedIcon/> : <WbSunnyRoundedIcon />}</span>
+        <span className="theme-toggle align-self-end" onClick={toggleTheme}>{theme === "dark" ? <Brightness3RoundedIcon/> : <WbSunnyRoundedIcon />}</span>
     );
 };
 

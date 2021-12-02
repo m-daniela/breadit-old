@@ -78,7 +78,7 @@ const Side = ({board}) => {
             </Navbar.Brand>
 
             <Navbar.Toggle aria-controls="basic-navbar-nav" id="nav-toggle"/>
-            <div className="col-12 col-lg flex-grow-0"></div>
+            <div className="col-12 col-lg flex-grow-0 h-100"></div>
             <Navbar.Collapse id="basic-navbar-nav" className="flex-column align-items-start px-3 col-sm-6 col-lg-12 ">
                 {board &&
                     <>

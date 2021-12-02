@@ -11,13 +11,13 @@ const PostSkeleton = () => {
 
     useEffect(() => {
         const delay = setTimeout(() => setShowLoader(false), 5000);
-        // return clearTimeout(delay);
+        return () => clearTimeout(delay);
     }, []);
 
     return (
         <>
             {showLoader ? 
-                <div className="post-preview skeleton col-12  my-3">
+                <div className="post-preview skeleton col-12 px-sm-0 my-3">
             
                     <h2/>
                     <div className="preview-description"/>
@@ -25,7 +25,7 @@ const PostSkeleton = () => {
             
                 </div>
                 :
-                <div className="skeleton-error col-12  my-3">
+                <div className="skeleton-error col-12 px-sm-0 my-3">
                     No data could be found, please try again later. 
                 </div>
             }
