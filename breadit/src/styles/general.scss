@@ -7,8 +7,10 @@
     --bg_primary: #151515FF;
     --bg_secondary: #1F1F1FFF;
     --bg_input: #363636FF;
+    --bg_input_hover: #363636aa;
     --font_color: #DBDBDBFF;
-    --highglight_comment: #2c2c2c;
+    --font_color_hover: rgba(219, 219, 219, 0.746);
+    --hover: #a5a5a5;
     --overlay: #151515AA;
     --scroll_thumb: #363636FF;
     --scroll_track: #1F1F1FFF;
@@ -20,8 +22,10 @@
     --bg_primary: #ffffff;
     --bg_secondary: #f2f2f2;
     --bg_input: #e0e0e0;
+    --bg_input_hover: #d4d4d4;
     --font_color: #222222;
-    --highglight_comment: #dbdbdb;
+    --font_color_hover: #565656;
+    --hover: #565656;
     --scroll_thumb: #cfcfcf;
     --scroll_track: #f2f2f2;
 }

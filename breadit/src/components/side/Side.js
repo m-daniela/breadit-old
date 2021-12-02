@@ -21,6 +21,7 @@ import { ThemeContext } from '../../context/ThemeProvider';
  * board, the search bars and the list of existing boards, taken  
  * from the cached state. 
  * @param {number} board id of the selected board
+ * TODO: logo with the name in it
  */
 const Side = ({board}) => {
     const {theme} = useContext(ThemeContext); 
@@ -72,9 +73,9 @@ const Side = ({board}) => {
 
     return(
         <Navbar expand="lg" sticky="top" variant={theme} className="side flex-lg-column col-lg-4 align-items-start w-100">
-            <Navbar.Brand id="logo" href={routes.main} className="px-3 pt-lg-3" >
+            <Navbar.Brand id="logo" href={routes.main} className="px-3 pt-lg-3 justify-content-center" >
                 <img src={breadit_logo50}/>
-                Breadit
+                <span className="px-2">Breadit</span>
             </Navbar.Brand>
 
             <Navbar.Toggle aria-controls="basic-navbar-nav" id="nav-toggle"/>

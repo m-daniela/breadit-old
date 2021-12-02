@@ -7,17 +7,14 @@ export const ThemeContext = createContext();
  */
 const ThemeProvider = ({children}) => {
     const [theme, setTheme] = useState(localStorage.getItem("theme") ?? "dark");
-
+    localStorage.setItem("theme", theme);
+    document.documentElement.setAttribute("data-theme", theme);
     const toggleTheme = () => {
         if (theme === "dark"){
             setTheme("light");
-            localStorage.setItem("theme", "light");
-            document.documentElement.setAttribute("data-theme", "light");
         }
         else{
             setTheme("dark");
-            localStorage.setItem("theme", "dark");
-            document.documentElement.setAttribute("data-theme", "dark");
         }
     };
 
