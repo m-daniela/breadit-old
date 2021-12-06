@@ -9,10 +9,11 @@ const port = process.env.PORT || 5000;
 
 const endpoints = {
     frontpage: "/",
-    board: "/:board/page/:page",
-    comments: "/comments/:board/:post",
+    // board: "/:board/page/:page",
+    board: "/board/:board",
+    // comments: "/comments/:board/:post",
     post: "/:board/post",
-    postData: "/post/:board/:post",
+    postData: "/:board/:post",
     comment: "/comment/:post",
     reply: "/reply/:comment",
     search: "/search/",
@@ -21,7 +22,8 @@ const endpoints = {
     updateBoard: "/admin/board/:board",
     deleteBoard: "/admin/board/:board",
     deletePost: "/admin/post/:post",
-    deleteComment: "/admin/comment/:comment"
+    deleteComment: "/admin/comment/:comment", 
+    addBoard: "/board"
 };
 
 
