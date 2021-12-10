@@ -17,7 +17,6 @@ const initialSearch = {
 export const fetchPosts = createAsyncThunk(
     "posts/fetchPosts", 
     async ({board, page}, thunkAPI) => {
-        console.log(board, page, "====");
         const posts = await getPosts(board, page);
         return posts;
     }

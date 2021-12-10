@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { AddPostContext } from '../../context/AddPostProvider';
 import { selectPage } from '../../store/redux';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,7 +15,8 @@ import PaginatedPreview from './PaginatedPreview';
  */
 const Board = () => {
     const {addPost} = useContext(AddPostContext);
-    const {board, page} = useParams();
+    const {board} = useParams();
+    const page = new URLSearchParams(useLocation().search).get("page");
     const {name} = useSelector(state => state.board);
     const currentPage = +page ?? 1;
     const dispatch = useDispatch();

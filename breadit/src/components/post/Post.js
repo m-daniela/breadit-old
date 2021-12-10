@@ -15,6 +15,7 @@ import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
 import { AdminContext } from '../../context/AdminContext';
 import CloseRounded from '@material-ui/icons/CloseRounded';
+import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
 import Button from "react-bootstrap/Button";
 
 const Post = () => {
@@ -76,7 +77,8 @@ const Post = () => {
                         <div className="post-display row">
                             {data.title ?
                                 <div className="post d-flex flex-column py-4 px-5 my-3 col-12 ">
-                                    <Button onClick={history.goBack} className="btn-custom">Go back</Button>
+                                    {/* <Button onClick={history.goBack} className="btn-custom"><ArrowBackIosRoundedIcon/></Button> */}
+                                    <ArrowBackIosRoundedIcon onClick={history.goBack} className="align-self-start"/>
                                     <div className="post-info p-0">
                                         <h1 className="d-flex ">
                                             <span className="col-11 px-0">{data.title}</span> 
