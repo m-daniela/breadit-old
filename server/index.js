@@ -35,7 +35,11 @@ app.get(endpoints.frontpage, (req, res) => {
 // get posts from the given board
 app.get(endpoints.board, (req, res) => {
     const board = req.params.board;
-    const page = +req.params.page;
+    // const page = +req.params.page;
+    let page = +req.query.page;
+    if (isNaN(page) || page < 1){
+        page = 1;
+    }
     getPosts(board, page, res);
 });
 

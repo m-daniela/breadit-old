@@ -9,13 +9,13 @@ const port = process.env.PORT || 5000;
 
 const endpoints = {
     frontpage: "/",
-    board: "/:board/page/:page",
+    board: "/board/:board/",
     comments: "/comments/:board/:post",
     post: "/:board/post",
     postData: "/post/:board/:post",
     comment: "/comment/:post",
     reply: "/reply/:comment",
-    search: "/search/",
+    search: "/search",
     admin: "/admin",
     addBoard: "/admin/board",
     updateBoard: "/admin/board/:board",

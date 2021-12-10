@@ -11,7 +11,9 @@ const getPosts = (board, page, res) => {
     const startIndex = (page - 1) * 10;
     const endIndex = startIndex + 10;
 
-    console.log(`GET /${board}/page/${page}`);
+    
+
+    console.log(`GET /${board}?page=${page}`);
     const sql = "select * from posts where board_name = ? order by date_created desc limit ?, ?";
     connection.query(sql, [board, startIndex, endIndex], (err, result) => {
         if (err) {

@@ -19,9 +19,9 @@ const PostSkeleton = () => {
             {showLoader ? 
                 <div className="post-preview skeleton col-12 px-sm-0 my-3">
             
-                    <h2/>
-                    <div className="preview-description"/>
-                    <div className="preview-date"/>
+                    <h2 className="mx-5"/>
+                    <div className="preview-description mx-5"/>
+                    <div className="preview-date mx-5 mb-2 align-self-end"/>
             
                 </div>
                 :

@@ -23,7 +23,7 @@ const Search = () => {
     const query = location.get("q");
     const page = location.get("page");
     const dispatch = useDispatch(); 
-
+    console.log(query, "----");
     useEffect(() => {
         dispatch(fetchSearch({board, query, page}));
     }, [query, page]);
