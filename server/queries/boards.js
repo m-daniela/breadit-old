@@ -6,7 +6,7 @@ const Board = require("../model/Board");
  * @returns query result
  */
 const getBoards = async () => {
-    return await Board.find({}, "-posts");
+    return await Board.find({}, {posts: 0, __v: 0});
 }
 
 /**

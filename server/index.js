@@ -11,7 +11,7 @@ const {
     getBoards, addBoard
 } = require("./queries/boards");
 const { getPosts, getPostData, createPost, searchQuery, deletePost } = require('./queries/posts');
-const { getComments, addComment, replyToComment, deleteComment } = require('./data/comments');
+const { addComment, replyToComment, deleteComment } = require('./queries/comments');
 
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -56,11 +56,15 @@ app.post(endpoints.addBoard, (req, res) => {
 // get posts from the given board
 app.get(endpoints.board, (req, res) => {
     const board = req.params.board;
-    const page = +req.query.page;
+    let page = +req.query.page;
+    if (isNaN(page) || page < 1){
+        page = 1;
+    }
+
     console.log(`GET /${board}?page=${page}`);
     getPosts(board, page)
         .then(result => {
-            res.json(result[0].posts);
+            res.json(result);
         })
         .catch(error => {
             console.log(error);
@@ -76,7 +80,7 @@ app.get(endpoints.postData, (req, res) => {
     console.log(`GET /${board_id}/${post_id}`);
     getPostData(board_id, post_id)
         .then(result => {
-            res.json(result[0].posts[0]);
+            res.json(result.posts[0]);
         })
         .catch(error => {
             console.log(error);
@@ -106,10 +110,16 @@ app.post(endpoints.post, (req, res) => {
 
 // add a comment to the post
 app.post(endpoints.comment, (req, res) => {
+    const board = req.params.board;
     const post = req.params.post;
     const {contents, date_added, post_id} = req.body;
-    console.log(`POST /comment/${post}`);
-    addComment(contents, date_added, post_id, res);
+    console.log(`POST /comment/${board}/${post}`);
+    addComment(board, contents, date_added, post_id)
+        .then(result => res.json(result))
+        .catch(error => {
+            console.log(error);
+            res.json(error);
+        });
 });
 
 // add a reply to the comment
@@ -137,9 +147,17 @@ app.get(endpoints.search, (req, res) => {
 
 // delete the specified post
 app.delete(endpoints.deletePost, (req, res) => {
+    const board = req.params.board;
     const post = req.params.post;
-    console.log(`Delete /post/${post}`);
-    deletePost(post, res);
+    console.log(`Delete admin/post/${board}/${post}`);
+    deletePost(board, post)
+        .then(result => {
+            res.json(result);
+        })
+        .catch(error => {
+            console.log(error);
+            res.json({error: "Error while fetching the post"});
+        });
 });
 
 

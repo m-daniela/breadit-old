@@ -10,11 +10,23 @@ const mongoose = require("mongoose");
 const getPosts = async (board, page) => {
     const startIndex = (page - 1) * 10;
     const endIndex = startIndex + 10;
-    return await Board.find({_id: board}, {
+    console.log(startIndex)
+    return await Board.findById(board, {
         posts: {
-            $slice: [startIndex, endIndex], 
-        }
+            $slice: [startIndex, endIndex],    
+        }, 
+        _id: 0, 
+        name: 0, 
+        description: 0
     });
+    // return await Board.findById(board)
+    //     .populate({
+    //         path: "posts", 
+    //         select: {
+    //             "name": 0,
+    //             "posts.title": 0
+    //         }})
+    //     .select({posts: {$slice: [startIndex, endIndex] }});
 };
 
 /**
@@ -24,14 +36,14 @@ const getPosts = async (board, page) => {
  * @param {number} post 
  */
 const getPostData = async (board, post) => {
-    return await Board.find({_id: board})
-        .select({
-            posts: {
-                $elemMatch: {
-                    _id: post
-                }
+    return await Board.findOne({_id: board}, {
+        posts: {
+            $elemMatch: {
+                _id: post
             }
-        });
+        }
+    });
+
 }
 
 /**
@@ -103,11 +115,35 @@ const searchQuery = async (board, query, page) => {
 /**
  * delete the post with the given id
  * @param {number} post 
- * @param {*} res 
  */
- const deletePost = (post) => {
-
- };
+const deletePost = async (board, post) => {
+    try{
+        const result = await Board.updateOne({_id: board}, {
+            $pull: {
+                posts: {
+                    _id: post
+                }
+            }
+        });
+        if (result.nModified !== 0){
+            return {
+                _id, 
+                success: `Deleted post with title "${post}".`
+            }
+        }
+        else{
+            return {
+                error: `Error while deleting the post with title "${post}".`
+            }
+        }
+    }
+    catch(error){
+        console.log(error);
+        return {
+            error: `Error while deleting the post with title "${post}".`
+        }
+    }
+};
 
  module.exports = {
     getPosts,

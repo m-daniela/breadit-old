@@ -14,16 +14,15 @@ const endpoints = {
     comments: "/comments/:board/:post",
     post: "/:board/post",
     postData: "/:board/:post",
-    comment: "/comment/:post",
-    reply: "/reply/:comment",
+    comment: "/comment/:board/:post",
+    reply: "/reply/:board/:post/:comment",
     search: "/search",
     admin: "/admin",
     addBoard: "/admin/board",
     updateBoard: "/admin/board/:board",
     deleteBoard: "/admin/board/:board",
-    deletePost: "/admin/post/:post",
-    deleteComment: "/admin/comment/:comment", 
-    addBoard: "/board"
+    deletePost: "/admin/post/:board/:post",
+    deleteComment: "/admin/comment/:board/:comment", 
 };
 
 
